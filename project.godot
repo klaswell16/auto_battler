@@ -14,6 +14,10 @@ config/name="auto_battler"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AbilityDb="*res://scripts/ability_db.gd"
+
 [display]
 
 window/size/viewport_width=1920
