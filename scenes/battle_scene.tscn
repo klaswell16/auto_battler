@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsj8dewr7suvq"]
+[gd_scene load_steps=7 format=3 uid="uid://dsj8dewr7suvq"]
 
 [ext_resource type="Texture2D" uid="uid://ky1unmpkiepu" path="res://sprites/ChatGPT Image Nov 5, 2025, 06_23_36 PM.png" id="1_kinr6"]
-[ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://scenes/potrait_button.tscn" id="2_rca61"]
+[ext_resource type="Script" uid="uid://blr44w1gqrvvu" path="res://scripts/battle_scene.gd" id="1_pxwbd"]
+[ext_resource type="Texture2D" uid="uid://b8060iiultitp" path="res://sprites/P.png" id="2_1i8jf"]
+[ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="2_rca61"]
+[ext_resource type="PackedScene" uid="uid://bk86l6g366q3v" path="res://scenes/champion_slot.tscn" id="3_1i8jf"]
 [ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="3_rca61"]
 
 [node name="BattleScene" type="Control"]
@@ -11,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pxwbd")
 
 [node name="Board" type="Control" parent="."]
 layout_mode = 1
@@ -25,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_1i8jf")
 
 [node name="EnemyRow" type="HBoxContainer" parent="Board"]
 layout_mode = 1
@@ -39,14 +44,15 @@ offset_bottom = 227.5
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 32
+alignment = 1
 
-[node name="Container" type="Container" parent="Board/EnemyRow"]
+[node name="ChampionSlot" parent="Board/EnemyRow" instance=ExtResource("3_1i8jf")]
 layout_mode = 2
 
-[node name="Container2" type="Container" parent="Board/EnemyRow"]
+[node name="ChampionSlot2" parent="Board/EnemyRow" instance=ExtResource("3_1i8jf")]
 layout_mode = 2
 
-[node name="Container3" type="Container" parent="Board/EnemyRow"]
+[node name="ChampionSlot3" parent="Board/EnemyRow" instance=ExtResource("3_1i8jf")]
 layout_mode = 2
 
 [node name="Divider" type="ColorRect" parent="Board"]
@@ -66,14 +72,15 @@ offset_right = 920.0
 offset_bottom = 227.5
 grow_vertical = 2
 theme_override_constants/separation = 32
+alignment = 1
 
-[node name="Container" type="Container" parent="Board/PlayerRow"]
+[node name="ChampionSlot" parent="Board/PlayerRow" instance=ExtResource("3_1i8jf")]
 layout_mode = 2
 
-[node name="Container2" type="Container" parent="Board/PlayerRow"]
+[node name="ChampionSlot2" parent="Board/PlayerRow" instance=ExtResource("3_1i8jf")]
 layout_mode = 2
 
-[node name="Container3" type="Container" parent="Board/PlayerRow"]
+[node name="ChampionSlot3" parent="Board/PlayerRow" instance=ExtResource("3_1i8jf")]
 layout_mode = 2
 
 [node name="TopBar" type="HBoxContainer" parent="."]

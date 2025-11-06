@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhtudq5lcjm0n"]
 
 [ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="1_xkkcm"]
-[ext_resource type="Script" uid="uid://dtw13joybxe8n" path="res://scripts/potrait_button.gd" id="1_ywikn"]
+[ext_resource type="Script" uid="uid://dtw13joybxe8n" path="res://ui/potrait_button.gd" id="1_ywikn"]
 
 [node name="PotraitButton" type="Button"]
 custom_minimum_size = Vector2(64, 64)
