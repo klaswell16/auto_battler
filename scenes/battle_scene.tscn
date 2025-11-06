@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsj8dewr7suvq"]
+
+[ext_resource type="Texture2D" uid="uid://ky1unmpkiepu" path="res://sprites/ChatGPT Image Nov 5, 2025, 06_23_36 PM.png" id="1_kinr6"]
+[ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://scenes/potrait_button.tscn" id="2_rca61"]
+[ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="3_rca61"]
+
+[node name="BattleScene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 70.0
+alignment = 1
+
+[node name="Tier" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "4/10"
+horizontal_alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="GoldIcon" type="TextureRect" parent="TopBar/Money"]
+layout_mode = 2
+texture = ExtResource("1_kinr6")
+expand_mode = 2
+
+[node name="GoldLabel" type="Label" parent="TopBar/Money"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "12"
+
+[node name="Spacer" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.18
+
+[node name="TurnOrder" type="HBoxContainer" parent="TopBar"]
+custom_minimum_size = Vector2(7, 7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PotraitButton" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="PotraitButton2" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="PotraitButton3" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="Spacer2" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.21
+
+[node name="OptionsButton" type="Button" parent="TopBar"]
+custom_minimum_size = Vector2(80, 64)
+layout_mode = 2
+text = "Options"

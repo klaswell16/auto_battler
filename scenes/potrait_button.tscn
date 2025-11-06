@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhtudq5lcjm0n"]
+
+[ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="1_xkkcm"]
+[ext_resource type="Script" uid="uid://dtw13joybxe8n" path="res://scripts/potrait_button.gd" id="1_ywikn"]
+
+[node name="PotraitButton" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 49.538464
+offset_bottom = 46.0
+icon_alignment = 1
+script = ExtResource("1_ywikn")
+
+[node name="Mask" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.000002
+offset_top = 2.0
+offset_right = 74.666664
+offset_bottom = 73.66666
+scale = Vector2(0.6, 0.6)
+
+[node name="Portrait" type="TextureRect" parent="."]
+visibility_layer = 2
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 67.0
+offset_bottom = 65.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_xkkcm")
+expand_mode = 1
+
+[node name="Border" type="ColorRect" parent="."]
+visibility_layer = 4
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 69.0
+offset_bottom = 69.0
+scale = Vector2(0.6, 0.6)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
