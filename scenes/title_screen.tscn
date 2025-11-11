@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxa62cmjd54sk"]
+[gd_scene load_steps=3 format=3 uid="uid://bxa62cmjd54sk"]
 
-[ext_resource type="Script" uid="uid://bwgavcnfytiqh" path="res://scripts/title_screen.gd" id="1_sa3yf"]
 [ext_resource type="Texture2D" uid="uid://d7xyu6krd067" path="res://sprites/light_title.png" id="2_s4lrb"]
 [ext_resource type="Script" uid="uid://hhqxcu6rjqnr" path="res://scripts/menu.gd" id="3_s4lrb"]
 
@@ -11,9 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sa3yf")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
