@@ -2,7 +2,7 @@ extends Container
 class_name ChampionSlot
 
 @export var slot_index: int = 0
-@export var side: String = "player" # or "enemy"
+@export var side: String = "player" # would put enemy here as well
 
 var champion: Node = null
 
@@ -15,7 +15,7 @@ func place_champion(champ_scene: PackedScene, data: Dictionary) -> void:
 		champion.queue_free()
 	var c: Node2D = champ_scene.instantiate()
 	$Anchor.add_child(c)
-	# Minimal stat hookup (matches Champion.gd below)
+	# grabs stats
 	if c.has_method("apply_data"):
 		c.apply_data(data)
 	champion = c
