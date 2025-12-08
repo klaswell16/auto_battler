@@ -82,10 +82,9 @@ func _battle_loop_speed_based() -> void:
 				return
 
 			# attack!
-			champ.attack(target)
+			await champ.attack(target)
 
 			await get_tree().create_timer(0.4).timeout
-
 			# immediately check win/lose after each hit
 			if _is_team_defeated(defenders):
 				if team == "player":

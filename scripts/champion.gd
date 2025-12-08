@@ -59,8 +59,26 @@ func is_dead() -> bool:
 func attack(target: Champion) -> void:
 	if target == null:
 		return
-	if is_dead():
+	if is_dead() or target.is_dead():
 		return
-	if target.is_dead():
-		return
+
+	# --- Lunge towards the target ---
+	var start_pos: Vector2 = global_position
+	var dir: Vector2 = (target.global_position - start_pos).normalized()
+	var lunge_pos: Vector2 = start_pos + dir * 20.0  # how far to jump
+
+	var tween := create_tween()
+	tween.tween_property(self, "global_position", lunge_pos, 0.08)
+	tween.tween_property(self, "global_position", start_pos, 0.12)
+
+	# Wait until the lunge forward + back is done
+	await tween.finished
+
+	# --- Hit flash on the target ---
+	var original_modulate := target.modulate
+	target.modulate = Color(1, 0.5, 0.5)  # light red
+	await get_tree().create_timer(0.1).timeout
+	target.modulate = original_modulate
+
+	# --- Apply damage AFTER the animation ---
 	target.take_damage(power)
