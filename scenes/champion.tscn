@@ -18,14 +18,15 @@ texture = ExtResource("3_gjgd2")
 
 [node name="UI" type="Node2D" parent="."]
 
-[node name="HPBar" type="TextureProgressBar" parent="UI"]
+[node name="HPBar" type="ProgressBar" parent="UI"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -62.5
 offset_right = 62.5
-offset_bottom = 20.0
+offset_bottom = 27.0
 grow_horizontal = 2
+fill_mode = 1
 
 [node name="NameLabel" type="Label" parent="UI"]
 anchors_preset = 7

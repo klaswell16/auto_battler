@@ -8,7 +8,7 @@ class_name Champion
 
 var hp: int
 
-@onready var hp_bar: TextureProgressBar = $UI/HPBar
+@onready var hp_bar: ProgressBar = $UI/HPBar
 @onready var name_label: Label = $UI/NameLabel
 
 func _ready():
