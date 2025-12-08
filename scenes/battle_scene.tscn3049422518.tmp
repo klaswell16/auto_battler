@@ -1,0 +1,203 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsj8dewr7suvq"]
+
+[ext_resource type="Texture2D" uid="uid://ky1unmpkiepu" path="res://sprites/ChatGPT Image Nov 5, 2025, 06_23_36 PM.png" id="1_kinr6"]
+[ext_resource type="Script" uid="uid://blr44w1gqrvvu" path="res://scripts/battle_scene.gd" id="1_pxwbd"]
+[ext_resource type="Texture2D" uid="uid://b8060iiultitp" path="res://sprites/P.png" id="2_1i8jf"]
+[ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="2_rca61"]
+[ext_resource type="PackedScene" uid="uid://bk86l6g366q3v" path="res://scenes/champion_slot.tscn" id="3_1i8jf"]
+[ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="3_rca61"]
+
+[node name="BattleScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pxwbd")
+
+[node name="Board" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ArenaBG" type="TextureRect" parent="Board"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1i8jf")
+
+[node name="EnemyRow" type="HBoxContainer" parent="Board"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -920.0
+offset_top = -172.5
+offset_bottom = 227.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="ChampionSlot" parent="Board/EnemyRow" instance=ExtResource("3_1i8jf")]
+layout_mode = 2
+
+[node name="ChampionSlot2" parent="Board/EnemyRow" instance=ExtResource("3_1i8jf")]
+layout_mode = 2
+
+[node name="ChampionSlot3" parent="Board/EnemyRow" instance=ExtResource("3_1i8jf")]
+layout_mode = 2
+
+[node name="Divider" type="ColorRect" parent="Board"]
+layout_mode = 0
+offset_left = 938.0
+offset_top = 573.0
+offset_right = 971.0
+offset_bottom = 742.0
+
+[node name="PlayerRow" type="HBoxContainer" parent="Board"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -172.5
+offset_right = 920.0
+offset_bottom = 227.5
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="ChampionSlot" parent="Board/PlayerRow" instance=ExtResource("3_1i8jf")]
+layout_mode = 2
+
+[node name="ChampionSlot2" parent="Board/PlayerRow" instance=ExtResource("3_1i8jf")]
+layout_mode = 2
+
+[node name="ChampionSlot3" parent="Board/PlayerRow" instance=ExtResource("3_1i8jf")]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -959.0
+offset_right = 959.0
+offset_bottom = 70.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Tier" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 42
+text = "4/10"
+horizontal_alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="GoldIcon" type="TextureRect" parent="TopBar/Money"]
+layout_mode = 2
+texture = ExtResource("1_kinr6")
+expand_mode = 2
+
+[node name="GoldLabel" type="Label" parent="TopBar/Money"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "12"
+
+[node name="Spacer" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.18
+
+[node name="TurnOrder" type="HBoxContainer" parent="TopBar"]
+custom_minimum_size = Vector2(7, 7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PotraitButton" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="PotraitButton2" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="PotraitButton3" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="PotraitButton4" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="PotraitButton5" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="PotraitButton6" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+portrait = ExtResource("3_rca61")
+
+[node name="Spacer2" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.21
+
+[node name="OptionsButton" type="Button" parent="TopBar"]
+custom_minimum_size = Vector2(120, 64)
+layout_mode = 2
+text = "Options"
+
+[node name="BottomBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 828.0
+offset_right = 1918.0
+offset_bottom = 1076.0
+
+[node name="BattleLog" type="RichTextLabel" parent="BottomBar"]
+custom_minimum_size = Vector2(1300, 0)
+layout_mode = 2
+
+[node name="AbilityPanel" type="VBoxContainer" parent="BottomBar"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="PortraitDisplay" type="TextureRect" parent="BottomBar/AbilityPanel"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="BottomBar/AbilityPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "John Snow"
+
+[node name="ActiveDesc" type="RichTextLabel" parent="BottomBar/AbilityPanel"]
+layout_mode = 2
+text = "Active:
+"
+fit_content = true
+
+[node name="PassiveDesc" type="RichTextLabel" parent="BottomBar/AbilityPanel"]
+layout_mode = 2
+text = "Passive Ability:"
+fit_content = true
