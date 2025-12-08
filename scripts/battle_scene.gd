@@ -14,6 +14,13 @@ var enemy_slots: Array = []
 func _ready() -> void:
 	_spawn_row(player_row, player_team)
 	_spawn_row(enemy_row, enemy_team)
+	_cache_slots()
+	_start_battle()
+
+func _start_battle() -> void:
+	call_deferred("_run_battle")
+
+func _run_battle() -> void:
 	await get_tree().create_timer(0.4).timeout
 	await _battle_loop_speed_based()
 
@@ -29,17 +36,17 @@ func _cache_slots() -> void:
 	enemy_slots.clear()
 
 	for child in player_row.get_children():
-		# assumes your script uses class_name ChampionSlot
-		if child is ChampionSlot:
+		if child.has_method("place_champion"):
 			player_slots.append(child)
 
 	for child in enemy_row.get_children():
-		if child is ChampionSlot:
+		if child.has_method("place_champion"):
 			enemy_slots.append(child)
+
+	print("Cached slots -> player:", player_slots.size(), " enemy:", enemy_slots.size())
 
 func _battle_loop_speed_based() -> void:
 	while true:
-		# Check win/lose before the round
 		if _is_team_defeated(player_slots):
 			_on_battle_end("enemy")
 			return
@@ -56,7 +63,6 @@ func _battle_loop_speed_based() -> void:
 			var champ: Champion = actor["champ"]
 			var team: String = actor["team"]
 
-			# skip if they died earlier in the round
 			if champ == null or champ.is_dead():
 				continue
 
@@ -64,18 +70,16 @@ func _battle_loop_speed_based() -> void:
 
 			var target: Champion = _get_first_living_champion(defenders)
 			if target == null:
-				# opposing team is wiped mid-round
 				if team == "player":
 					_on_battle_end("player")
 				else:
 					_on_battle_end("enemy")
 				return
 
-			# attack!
 			await champ.attack(target)
 
 			await get_tree().create_timer(0.4).timeout
-			# immediately check win/lose after each hit
+
 			if _is_team_defeated(defenders):
 				if team == "player":
 					_on_battle_end("player")
@@ -104,9 +108,7 @@ func _get_actors_in_speed_order() -> Array:
 				"team": "enemy"
 			})
 
-	# sort by speed descending, players win ties (you can change this)
-	actors.sort_custom(_compare_actor_speed)
-
+	actors.sort_custom(Callable(self, "_compare_actor_speed"))
 	return actors
 
 func _compare_actor_speed(a: Dictionary, b: Dictionary) -> bool:
@@ -114,12 +116,10 @@ func _compare_actor_speed(a: Dictionary, b: Dictionary) -> bool:
 	var cb: Champion = b["champ"]
 
 	if ca.speed == cb.speed:
-		# tiebreaker: player team acts first
 		if a["team"] == b["team"]:
 			return true
 		return a["team"] == "player"
 
-	# higher speed comes first
 	return ca.speed > cb.speed
 
 func _is_team_defeated(slots: Array) -> bool:
@@ -140,4 +140,3 @@ func _get_first_living_champion(slots: Array) -> Champion:
 
 func _on_battle_end(winner: String) -> void:
 	print("Battle over! Winner: ", winner)
-	# TODO: hook into title screen / rewards / next round, etc.

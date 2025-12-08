@@ -12,7 +12,7 @@ position = Vector2(0, 98)
 texture = ExtResource("2_jtx5s")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(-4.7683716e-07, 192)
+position = Vector2(-2.842171e-14, 251)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_gjgd2")
 
