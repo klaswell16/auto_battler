@@ -24,3 +24,8 @@ func clear_slot() -> void:
 	if champion:
 		champion.queue_free()
 		champion = null
+
+func has_living_champion() -> bool:
+	return champion != null \
+		and champion is Champion \
+		and not champion.is_dead()
