@@ -10,15 +10,18 @@ func _ready():
 	custom_minimum_size = Vector2(128, 128)
 	$Highlight.visible = false
 
-func place_champion(champ_scene: PackedScene, data: Dictionary) -> void:
+func place_champion(champ_scene: PackedScene, data) -> void:
 	if champion:
 		champion.queue_free()
+
 	var c: Node2D = champ_scene.instantiate()
 	$Anchor.add_child(c)
-	# grabs stats
+
 	if c.has_method("apply_data"):
-		c.apply_data(data)
+		c.apply_data(data)  # can be ChampionData or Dictionary
+
 	champion = c
+
 
 func clear_slot() -> void:
 	if champion:

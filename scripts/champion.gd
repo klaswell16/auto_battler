@@ -8,6 +8,7 @@ class_name Champion
 @export var speed :=1
 
 var hp: int
+@onready var body_sprite: Sprite2D = $Body
 
 @onready var hp_bar: ProgressBar = $UI/HPBar
 @onready var name_label: Label = $UI/NameLabel
@@ -25,13 +26,26 @@ func _refresh_ui() -> void:
 		name_label.text = display_name
 
 # Called by ChampionSlot.place_champion
-func apply_data(d: Dictionary) -> void:
-	display_name = d.get("name", display_name)
-	max_hp = d.get("hp", max_hp)
-	power = d.get("pwr", power)
-	armor = d.get("armor", armor)
-	speed = d.get("spd", speed)
-	hp = max_hp
+func apply_data(d) -> void:
+	if d is ChampionData:
+		display_name = d.display_name
+		max_hp = d.max_hp
+		power = d.power
+		armor = d.armor
+		speed = d.speed
+		hp = max_hp
+
+		if is_instance_valid(body_sprite) and d.body_texture:
+			body_sprite.texture = d.body_texture
+
+	else:
+		# fallback if you still pass dictionaries anywhere
+		display_name = d.get("name", display_name)
+		max_hp = d.get("hp", max_hp)
+		power = d.get("pwr", power)
+		armor = d.get("armor", armor)
+		hp = max_hp
+
 	_refresh_ui()
 
 func set_hp(value: int) -> void:

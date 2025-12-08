@@ -5,17 +5,8 @@ extends Control
 
 var champion_scene: PackedScene = preload("res://scenes/Champion.tscn")
 
-var player_team := [
-	{"name":"Shieldbearer","hp":40,"pwr":8,"armor":3,"spd":8},
-	{"name":"Archer","hp":25,"pwr":12,"armor":1,"spd":14},
-	{"name":"Priest","hp":30,"pwr":4,"armor":1,"spd":10}
-]
-
-var enemy_team := [
-	{"name":"Bandit","hp":28,"pwr":10,"armor":1,"spd":3},
-	{"name":"Wizard","hp":22,"pwr":14,"armor":0,"spd":4},
-	{"name":"Brute","hp":50,"pwr":6,"armor":4,"spd":6}
-]
+@export var player_team: Array[ChampionData]
+@export var enemy_team: Array[ChampionData]
 
 var player_slots: Array = []
 var enemy_slots: Array = []
@@ -23,12 +14,11 @@ var enemy_slots: Array = []
 func _ready() -> void:
 	_spawn_row(player_row, player_team)
 	_spawn_row(enemy_row, enemy_team)
-	_cache_slots()
 	await get_tree().create_timer(0.4).timeout
 	await _battle_loop_speed_based()
 
 func _spawn_row(row: HBoxContainer, team: Array) -> void:
-	var count: int = min(team.size(), row.get_child_count())
+	var count : int = min(team.size(), row.get_child_count())
 	for i in count:
 		var slot = row.get_child(i)
 		if slot.has_method("place_champion"):

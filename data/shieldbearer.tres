@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ChampionData" load_steps=3 format=3 uid="uid://d0em6jn425c6h"]
+
+[ext_resource type="Texture2D" uid="uid://2h3j70u065v7" path="res://sprites/Idlestanding.png" id="1_16f62"]
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="2_8cdh5"]
+
+[resource]
+script = ExtResource("2_8cdh5")
+display_name = "Shieldbearer"
+armor = 4
+speed = 2
+body_texture = ExtResource("1_16f62")
+metadata/_custom_type_script = "uid://b5ufi8mmpoals"

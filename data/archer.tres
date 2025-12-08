@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChampionData" load_steps=2 format=3 uid="uid://c1lx0ys505qs4"]
+
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_yxq25"]
+
+[resource]
+script = ExtResource("1_yxq25")
+display_name = "Archer"
+metadata/_custom_type_script = "uid://b5ufi8mmpoals"

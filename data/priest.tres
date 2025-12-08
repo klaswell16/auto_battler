@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChampionData" load_steps=2 format=3 uid="uid://cxwf21vdhp7ov"]
+
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_ft3ja"]
+
+[resource]
+script = ExtResource("1_ft3ja")
+display_name = "Priest"
+metadata/_custom_type_script = "uid://b5ufi8mmpoals"
