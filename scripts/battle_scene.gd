@@ -142,6 +142,8 @@ func _get_first_living_champion(slots: Array) -> Champion:
 func _on_battle_end(winner: String) -> void:
 	print("Battle over! Winner: ", winner)
 
-	# Simple version: go back to the shop after each battle
-	await get_tree().create_timer(1.0).timeout  # small pause so you see the result
+	var player_won: bool = (winner == "player")
+	BattleContext.apply_battle_result(player_won)
+
+	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://scenes/shop.tscn")

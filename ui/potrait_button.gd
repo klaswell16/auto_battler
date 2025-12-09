@@ -1,11 +1,17 @@
 extends Button
 class_name PortraitButton
 
-@export var portrait: Texture2D :
+@export var portrait: Texture2D:
 	set(value):
 		portrait = value
 		if is_inside_tree():
 			$Portrait.texture = portrait
+
+@export var unit_name: String = "":
+	set(value):
+		unit_name = value
+		if is_inside_tree() and has_node("NameLabel"):
+			$NameLabel.text = unit_name
 
 @export var border_active_color: Color = Color(1.0, 0.85, 0.2, 1.0)
 @export var border_inactive_color: Color = Color(1, 1, 1, 0.0)
@@ -18,16 +24,16 @@ var _has_acted: bool = false
 
 func _ready() -> void:
 	focus_mode = FOCUS_ALL
+	if has_node("NameLabel"):
+		$NameLabel.text = unit_name
 	_apply_visuals()
 
-# Called when the button is clicked (connected via the editor)
 func _on_pressed() -> void:
-	print("Portrait button pressed!")  # optional feedback
+	print("Portrait button pressed!")
 	pulse_active()
 
-# Called when the mouse hovers over the button (connected via the editor)
 func _on_mouse_entered() -> void:
-	print("Hovering over portrait button!")  # optional feedback
+	print("Hovering over portrait button!")
 
 func set_active(state: bool) -> void:
 	_is_active = state
@@ -44,10 +50,8 @@ func set_has_acted(state: bool) -> void:
 	_apply_visuals()
 
 func _apply_visuals() -> void:
-	# Highlight border if active
 	$Border.color = border_active_color if _is_active else border_inactive_color
 
-	# Dim layer: dead > acted > normal
 	if _is_dead:
 		$Mask.color = dead_dim_color
 	elif _has_acted:
