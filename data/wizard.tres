@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="ChampionData" load_steps=2 format=3 uid="uid://dw3pusjlrs7dh"]
+[gd_resource type="Resource" script_class="ChampionData" load_steps=4 format=3 uid="uid://dw3pusjlrs7dh"]
 
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_de0xx"]
+[ext_resource type="Script" path="res://scripts/champion_data.gd" id="1_de0xx"]
+[ext_resource type="Texture2D" uid="uid://c7wqbjw273pyc" path="res://sprites/wizard.png" id="1_qnfp5"]
+[ext_resource type="Texture2D" uid="uid://c57m0xns1m2dn" path="res://sprites/wizardport.png" id="2_rnjys"]
 
 [resource]
 script = ExtResource("1_de0xx")
 display_name = "Wizard"
-metadata/_custom_type_script = "uid://b5ufi8mmpoals"
+body_texture = ExtResource("1_qnfp5")
+portrait_texture = ExtResource("2_rnjys")

@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="ChampionData" load_steps=2 format=3 uid="uid://cxwf21vdhp7ov"]
+[gd_resource type="Resource" script_class="ChampionData" load_steps=4 format=3 uid="uid://cxwf21vdhp7ov"]
 
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_ft3ja"]
+[ext_resource type="Texture2D" uid="uid://brxojg4xm6oja" path="res://sprites/priest.png" id="1_6h7fi"]
+[ext_resource type="Script" path="res://scripts/champion_data.gd" id="1_ft3ja"]
+[ext_resource type="Texture2D" uid="uid://cb2h233adtm5e" path="res://sprites/priestport.png" id="2_7si84"]
 
 [resource]
 script = ExtResource("1_ft3ja")
 display_name = "Priest"
-metadata/_custom_type_script = "uid://b5ufi8mmpoals"
+body_texture = ExtResource("1_6h7fi")
+portrait_texture = ExtResource("2_7si84")

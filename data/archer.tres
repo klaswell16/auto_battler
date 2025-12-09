@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="ChampionData" load_steps=2 format=3 uid="uid://c1lx0ys505qs4"]
+[gd_resource type="Resource" script_class="ChampionData" load_steps=4 format=3 uid="uid://c1lx0ys505qs4"]
 
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_yxq25"]
+[ext_resource type="Texture2D" uid="uid://cwje6yr1kp1e5" path="res://sprites/archer.png" id="1_4und0"]
+[ext_resource type="Script" path="res://scripts/champion_data.gd" id="1_yxq25"]
+[ext_resource type="Texture2D" uid="uid://ccu8wp7gvpi4p" path="res://sprites/archerport.png" id="2_xdrje"]
 
 [resource]
 script = ExtResource("1_yxq25")
 display_name = "Archer"
-metadata/_custom_type_script = "uid://b5ufi8mmpoals"
+body_texture = ExtResource("1_4und0")
+portrait_texture = ExtResource("2_xdrje")

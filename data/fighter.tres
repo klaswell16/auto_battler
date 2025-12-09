@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="ChampionData" load_steps=2 format=3 uid="uid://digdr3ve32udb"]
+[gd_resource type="Resource" script_class="ChampionData" load_steps=4 format=3 uid="uid://digdr3ve32udb"]
 
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_3qrpl"]
+[ext_resource type="Script" path="res://scripts/champion_data.gd" id="1_3qrpl"]
+[ext_resource type="Texture2D" uid="uid://cnxuenhpv3avp" path="res://sprites/pixil-frame-0.png" id="1_08dje"]
+[ext_resource type="Texture2D" uid="uid://d2j58lp1nndtr" path="res://sprites/knightport.png" id="2_pxr1x"]
 
 [resource]
 script = ExtResource("1_3qrpl")
 display_name = "Fighter"
-metadata/_custom_type_script = "uid://b5ufi8mmpoals"
+body_texture = ExtResource("1_08dje")
+portrait_texture = ExtResource("2_pxr1x")

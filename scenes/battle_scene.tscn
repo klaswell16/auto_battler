@@ -1,15 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsj8dewr7suvq"]
+[gd_scene load_steps=11 format=3 uid="uid://dsj8dewr7suvq"]
 
 [ext_resource type="Texture2D" uid="uid://ky1unmpkiepu" path="res://sprites/ChatGPT Image Nov 5, 2025, 06_23_36 PM.png" id="1_kinr6"]
 [ext_resource type="Script" uid="uid://blr44w1gqrvvu" path="res://scripts/battle_scene.gd" id="1_pxwbd"]
 [ext_resource type="Texture2D" uid="uid://b8060iiultitp" path="res://sprites/P.png" id="2_1i8jf"]
 [ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="2_rca61"]
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="2_ti0og"]
+[ext_resource type="Script" path="res://scripts/champion_data.gd" id="2_ti0og"]
 [ext_resource type="PackedScene" uid="uid://bk86l6g366q3v" path="res://scenes/champion_slot.tscn" id="3_1i8jf"]
-[ext_resource type="Resource" uid="uid://c1lx0ys505qs4" path="res://data/archer.tres" id="3_bg0yk"]
 [ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="3_rca61"]
-[ext_resource type="Resource" uid="uid://cxwf21vdhp7ov" path="res://data/priest.tres" id="4_yt3ua"]
-[ext_resource type="Resource" uid="uid://d0em6jn425c6h" path="res://data/shieldbearer.tres" id="5_3xrod"]
 [ext_resource type="Resource" uid="uid://cxek03a6nagnq" path="res://data/bandit.tres" id="6_05s0e"]
 [ext_resource type="Resource" uid="uid://dw3pusjlrs7dh" path="res://data/wizard.tres" id="7_j0cvo"]
 [ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="8_sjku2"]
@@ -22,7 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pxwbd")
-player_team = Array[ExtResource("2_ti0og")]([ExtResource("3_bg0yk"), ExtResource("4_yt3ua"), ExtResource("5_3xrod")])
 enemy_team = Array[ExtResource("2_ti0og")]([ExtResource("6_05s0e"), ExtResource("7_j0cvo"), ExtResource("8_sjku2")])
 
 [node name="Board" type="Control" parent="."]
@@ -63,13 +59,6 @@ layout_mode = 2
 
 [node name="ChampionSlot3" parent="Board/EnemyRow" instance=ExtResource("3_1i8jf")]
 layout_mode = 2
-
-[node name="Divider" type="ColorRect" parent="Board"]
-layout_mode = 0
-offset_left = 938.0
-offset_top = 573.0
-offset_right = 971.0
-offset_bottom = 742.0
 
 [node name="PlayerRow" type="HBoxContainer" parent="Board"]
 layout_mode = 1

@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://csgwjjqrwqoy0"]
+[gd_scene load_steps=11 format=3 uid="uid://d3htebj1x8k38"]
 
 [ext_resource type="Script" uid="uid://bemitvvcd87oa" path="res://scripts/shop.gd" id="1_rgcs7"]
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="2_skkvx"]
 [ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="3_eo1la"]
 [ext_resource type="Resource" uid="uid://dw3pusjlrs7dh" path="res://data/wizard.tres" id="4_toxd1"]
 [ext_resource type="Resource" uid="uid://cxek03a6nagnq" path="res://data/bandit.tres" id="5_47hci"]
@@ -10,58 +9,65 @@
 [ext_resource type="Resource" uid="uid://c1lx0ys505qs4" path="res://data/archer.tres" id="8_jccym"]
 [ext_resource type="PackedScene" uid="uid://crrcw65irwauy" path="res://scenes/ShopSlot.tscn" id="9_plhqw"]
 [ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="10_eo1la"]
+[ext_resource type="Texture2D" uid="uid://b8060iiultitp" path="res://sprites/P.png" id="10_toxd1"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rgcs7")
-available_units = Array[ExtResource("2_skkvx")]([ExtResource("3_eo1la"), ExtResource("4_toxd1"), ExtResource("5_47hci"), ExtResource("6_hd80v"), ExtResource("7_abjrc"), ExtResource("8_jccym")])
+available_units = [ExtResource("3_eo1la"), ExtResource("4_toxd1"), ExtResource("5_47hci"), ExtResource("6_hd80v"), ExtResource("7_abjrc"), ExtResource("8_jccym")]
 shop_slot_scene = ExtResource("9_plhqw")
 slots_per_roll = 3
 owned_portrait_scene = ExtResource("10_eo1la")
 
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("10_toxd1")
+
 [node name="GoldLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 468.0
-offset_top = 272.0
-offset_right = 551.0
-offset_bottom = 310.0
+offset_left = 1163.0
+offset_top = 173.0
+offset_right = 1396.0
+offset_bottom = 280.0
 
 [node name="RoundLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 297.0
-offset_top = 244.0
-offset_right = 379.0
-offset_bottom = 285.0
+offset_left = 1616.0
+offset_top = 222.0
+offset_right = 1859.0
+offset_bottom = 320.0
 
 [node name="SlotsContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 4.0
-offset_right = 1056.0
-offset_bottom = 505.0
+offset_left = 883.0
+offset_top = 279.0
+offset_right = 1918.0
+offset_bottom = 780.0
 
 [node name="RerollButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 626.0
-offset_top = 342.0
-offset_right = 695.0
-offset_bottom = 409.0
+offset_left = 960.0
+offset_top = 885.0
+offset_right = 1171.0
+offset_bottom = 974.0
 text = "Reroll"
 
 [node name="StartBattleButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 283.0
-offset_top = 354.0
-offset_right = 411.0
-offset_bottom = 390.0
-text = "Start Battle"
+offset_left = 1470.0
+offset_top = 894.0
+offset_right = 1718.0
+offset_bottom = 973.0
+text = "Start Next Battle"
 
 [node name="OwnedContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 257.0
-offset_right = 348.0
-offset_bottom = 332.0
+offset_left = 91.0
+offset_top = 590.0
+offset_right = 878.0
+offset_bottom = 950.0
 
 [connection signal="pressed" from="StartBattleButton" to="." method="_on_start_battle_button_pressed"]

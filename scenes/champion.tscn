@@ -8,11 +8,11 @@
 script = ExtResource("1_7udgm")
 
 [node name="Body" type="Sprite2D" parent="."]
-position = Vector2(0, 98)
+position = Vector2(0, 145)
 texture = ExtResource("2_jtx5s")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(-2.842171e-14, 251)
+position = Vector2(-0.99999994, 299)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_gjgd2")
 

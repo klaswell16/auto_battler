@@ -98,7 +98,7 @@ func _refresh_owned_units_ui() -> void:
 
 		owned_container.add_child(pb)
 
-		# Now these lines are valid because unit_name & portrait exist
+		
 		pb.unit_name = data.display_name
 		pb.portrait = data.portrait_texture
 

@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="ChampionData" load_steps=2 format=3 uid="uid://cxek03a6nagnq"]
+[gd_resource type="Resource" script_class="ChampionData" load_steps=4 format=3 uid="uid://cxek03a6nagnq"]
 
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_5n6jb"]
+[ext_resource type="Script" path="res://scripts/champion_data.gd" id="1_5n6jb"]
+[ext_resource type="Texture2D" uid="uid://dubothhbrhf2t" path="res://sprites/bandit.png" id="1_8c7ub"]
+[ext_resource type="Texture2D" uid="uid://dxb55i2d1udvb" path="res://sprites/banditport.png" id="2_3xonf"]
 
 [resource]
 script = ExtResource("1_5n6jb")
 display_name = "Bandit"
-metadata/_custom_type_script = "uid://b5ufi8mmpoals"
+body_texture = ExtResource("1_8c7ub")
+portrait_texture = ExtResource("2_3xonf")

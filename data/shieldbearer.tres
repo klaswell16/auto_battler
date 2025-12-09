@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="ChampionData" load_steps=3 format=3 uid="uid://d0em6jn425c6h"]
+[gd_resource type="Resource" script_class="ChampionData" load_steps=4 format=3 uid="uid://d0em6jn425c6h"]
 
-[ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="1_16f62"]
-[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="2_8cdh5"]
+[ext_resource type="Texture2D" uid="uid://orld3guc5pxx" path="res://sprites/shieldbearer.png" id="1_8cdh5"]
+[ext_resource type="Script" path="res://scripts/champion_data.gd" id="2_8cdh5"]
+[ext_resource type="Texture2D" uid="uid://gwjn31pxsqcq" path="res://sprites/shieldbearerport.png" id="2_m5vdx"]
 
 [resource]
 script = ExtResource("2_8cdh5")
 display_name = "Shieldbearer"
 armor = 4
 speed = 2
-portrait_texture = ExtResource("1_16f62")
-metadata/_custom_type_script = "uid://b5ufi8mmpoals"
+body_texture = ExtResource("1_8cdh5")
+portrait_texture = ExtResource("2_m5vdx")
