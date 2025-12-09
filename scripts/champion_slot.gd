@@ -18,7 +18,13 @@ func place_champion(champ_scene: PackedScene, data) -> void:
 	$Anchor.add_child(c)
 
 	if c.has_method("apply_data"):
-		c.apply_data(data)  # can be ChampionData or Dictionary
+		c.apply_data(data)  
+		
+	if is_in_enemy_row():
+		c.flip_sprite(true)
+	else:
+		c.flip_sprite(false)
+
 
 	champion = c
 
@@ -32,3 +38,6 @@ func has_living_champion() -> bool:
 	return champion != null \
 		and champion is Champion \
 		and not champion.is_dead()
+		
+func is_in_enemy_row() -> bool:
+	return get_parent().name == "EnemyRow"

@@ -6,12 +6,15 @@ class_name Champion
 @export var power := 8
 @export var armor := 2
 @export var speed :=1
+@export var attack_sounds: Array[AudioStream] = []
 
 var hp: int
 @onready var body_sprite: Sprite2D = $Body
 
 @onready var hp_bar: ProgressBar = $UI/HPBar
 @onready var name_label: Label = $UI/NameLabel
+@onready var attack_player: AudioStreamPlayer = $AttackPlayer
+
 
 func _ready() -> void:
 	hp = max_hp
@@ -24,6 +27,12 @@ func _refresh_ui() -> void:
 		hp_bar.value = hp
 	if is_instance_valid(name_label):
 		name_label.text = display_name
+		
+func flip_sprite(is_enemy: bool) -> void:
+	if is_enemy:
+		body_sprite.flip_h = true
+	else:
+		body_sprite.flip_h = false
 
 # Called by ChampionSlot.place_champion
 func apply_data(d) -> void:
@@ -69,13 +78,22 @@ func heal(amount: int) -> void:
 
 func is_dead() -> bool:
 	return hp <= 0
-
+	
+func _play_random_attack_sound() -> void:
+	if attack_sounds.is_empty() or attack_player == null:
+		return
+	var sfx := attack_sounds[randi() % attack_sounds.size()]
+	attack_player.stream = sfx
+	attack_player.play()
+	
 func attack(target: Champion) -> void:
 	if target == null:
 		return
 	if is_dead() or target.is_dead():
 		return
-
+		
+	_play_random_attack_sound()
+	
 	# --- Lunge towards the target ---
 	var start_pos: Vector2 = global_position
 	var dir: Vector2 = (target.global_position - start_pos).normalized()
@@ -93,6 +111,7 @@ func attack(target: Champion) -> void:
 	target.modulate = Color(1, 0.5, 0.5)  # light red
 	await get_tree().create_timer(0.1).timeout
 	target.modulate = original_modulate
-
+	
 	# --- Apply damage AFTER the animation ---
 	target.take_damage(power)
+	

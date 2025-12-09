@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://saw74vbb4ev1"]
+[gd_scene load_steps=7 format=3 uid="uid://saw74vbb4ev1"]
 
 [ext_resource type="Script" uid="uid://d4h5nffqxeet3" path="res://scripts/champion.gd" id="1_7udgm"]
 [ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="2_jtx5s"]
+[ext_resource type="AudioStream" uid="uid://bfse0w103qph4" path="res://sounds/explosion(1).wav" id="2_ro84m"]
 [ext_resource type="Texture2D" uid="uid://bpvpsugtncc36" path="res://sprites/2ab8a03991960ca7f8abc6f0f9e6afdd-silueta-elipse-1510072808.png" id="3_gjgd2"]
+[ext_resource type="AudioStream" uid="uid://6w0i2k334keq" path="res://sounds/explosion.wav" id="3_x6koh"]
+[ext_resource type="AudioStream" uid="uid://djx5htgmr7k4e" path="res://sounds/hitHurt.wav" id="4_5ykqi"]
 
 [node name="Champion" type="Node2D"]
 script = ExtResource("1_7udgm")
+attack_sounds = Array[AudioStream]([ExtResource("2_ro84m"), ExtResource("3_x6koh"), ExtResource("4_5ykqi")])
 
 [node name="Body" type="Sprite2D" parent="."]
 position = Vector2(0, 145)
@@ -15,6 +19,9 @@ texture = ExtResource("2_jtx5s")
 position = Vector2(-0.99999994, 299)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_gjgd2")
+
+[node name="AttackPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -17.175
 
 [node name="UI" type="Node2D" parent="."]
 
