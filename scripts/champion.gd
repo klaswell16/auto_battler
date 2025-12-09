@@ -14,6 +14,7 @@ var hp: int
 @onready var hp_bar: ProgressBar = $UI/HPBar
 @onready var name_label: Label = $UI/NameLabel
 @onready var attack_player: AudioStreamPlayer = $AttackPlayer
+const DAMAGE_NUMBER_SCENE := preload("res://ui/DamageNumber.tscn")
 
 
 func _ready() -> void:
@@ -69,6 +70,7 @@ func take_damage(raw_amount: int) -> void:
 	if hp <= 0:
 		return
 	var reduced : int = max(raw_amount - armor, 1) # at least 1 dmg
+	_spawn_damage_number(reduced)
 	set_hp(hp - reduced)
 
 func heal(amount: int) -> void:
@@ -85,6 +87,17 @@ func _play_random_attack_sound() -> void:
 	var sfx := attack_sounds[randi() % attack_sounds.size()]
 	attack_player.stream = sfx
 	attack_player.play()
+	
+func _spawn_damage_number(amount: int) -> void:
+	if amount <= 0:
+		return
+
+	var dn: DamageNumber = DAMAGE_NUMBER_SCENE.instantiate()
+	get_tree().current_scene.add_child(dn)
+	dn.global_position = global_position + Vector2(0, -10)
+	dn.show_value(amount)
+
+
 	
 func attack(target: Champion) -> void:
 	if target == null:

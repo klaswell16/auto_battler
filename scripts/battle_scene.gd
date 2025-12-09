@@ -69,7 +69,8 @@ func _battle_loop_speed_based() -> void:
 
 			var defenders: Array = enemy_slots if team == "player" else player_slots
 
-			var target: Champion = _get_first_living_champion(defenders)
+			var target: Champion = _get_closest_living_champion(champ, defenders)
+
 			if target == null:
 				if team == "player":
 					_on_battle_end("player")
@@ -131,13 +132,24 @@ func _is_team_defeated(slots: Array) -> bool:
 			return false
 	return true
 
-func _get_first_living_champion(slots: Array) -> Champion:
+func _get_closest_living_champion(attacker: Champion, slots: Array) -> Champion:
+	var best_target: Champion = null
+	var best_dist_sq: float = INF
+
 	for slot in slots:
 		if slot.champion != null \
 		and slot.champion is Champion \
 		and not slot.champion.is_dead():
-			return slot.champion
-	return null
+
+			var c: Champion = slot.champion
+			var dist_sq := attacker.global_position.distance_squared_to(c.global_position)
+
+			if dist_sq < best_dist_sq:
+				best_dist_sq = dist_sq
+				best_target = c
+
+	return best_target
+
 
 func _on_battle_end(winner: String) -> void:
 	print("Battle over! Winner: ", winner)
