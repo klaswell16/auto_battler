@@ -2,6 +2,8 @@ extends Control
 
 @onready var player_row: HBoxContainer = $Board/PlayerRow
 @onready var enemy_row: HBoxContainer = $Board/EnemyRow
+@onready var gold_label: Label = $TopBar/Money/GoldLabel      
+@onready var round_label: Label = $TopBar/RoundLabel 
 
 var champion_scene: PackedScene = preload("res://scenes/Champion.tscn")
 
@@ -16,6 +18,7 @@ func _ready() -> void:
 	_spawn_row(player_row, player_team)
 	_spawn_row(enemy_row, enemy_team)
 	_cache_slots()
+	_update_meta_ui()
 	_start_battle()
 
 func _start_battle() -> void:
@@ -149,6 +152,13 @@ func _get_closest_living_champion(attacker: Champion, slots: Array) -> Champion:
 				best_target = c
 
 	return best_target
+	
+func _update_meta_ui() -> void:
+	if gold_label:
+		gold_label.text = "Gold: %d" % BattleContext.gold
+	if round_label:
+		round_label.text = "Round: %d" % BattleContext.round
+
 
 
 func _on_battle_end(winner: String) -> void:
@@ -156,6 +166,8 @@ func _on_battle_end(winner: String) -> void:
 
 	var player_won: bool = (winner == "player")
 	BattleContext.apply_battle_result(player_won)
+	
+	_update_meta_ui()
 
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://scenes/shop.tscn")

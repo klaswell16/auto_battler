@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://0876b0x85otd" path="res://scripts/shop_slot.gd" id="1_0lmm0"]
 
 [node name="ShopSlot" type="VBoxContainer"]
+custom_minimum_size = Vector2(100, 200)
 offset_left = -2.0
 offset_top = 17.0
 offset_right = 268.0

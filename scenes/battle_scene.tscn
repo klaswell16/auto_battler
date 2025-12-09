@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsj8dewr7suvq"]
+[gd_scene load_steps=9 format=3 uid="uid://dsj8dewr7suvq"]
 
 [ext_resource type="Texture2D" uid="uid://ky1unmpkiepu" path="res://sprites/ChatGPT Image Nov 5, 2025, 06_23_36 PM.png" id="1_kinr6"]
 [ext_resource type="Script" uid="uid://blr44w1gqrvvu" path="res://scripts/battle_scene.gd" id="1_pxwbd"]
 [ext_resource type="Texture2D" uid="uid://b8060iiultitp" path="res://sprites/P.png" id="2_1i8jf"]
-[ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="2_rca61"]
-[ext_resource type="Script" path="res://scripts/champion_data.gd" id="2_ti0og"]
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="2_ti0og"]
 [ext_resource type="PackedScene" uid="uid://bk86l6g366q3v" path="res://scenes/champion_slot.tscn" id="3_1i8jf"]
-[ext_resource type="Texture2D" uid="uid://bofw1u406nhk8" path="res://icon.svg" id="3_rca61"]
 [ext_resource type="Resource" uid="uid://cxek03a6nagnq" path="res://data/bandit.tres" id="6_05s0e"]
 [ext_resource type="Resource" uid="uid://dw3pusjlrs7dh" path="res://data/wizard.tres" id="7_j0cvo"]
 [ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="8_sjku2"]
@@ -93,11 +91,11 @@ offset_bottom = 70.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Tier" type="Label" parent="TopBar"]
+[node name="RoundLabel" type="Label" parent="TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 42
-text = "4/10"
+text = "1"
 horizontal_alignment = 1
 
 [node name="Money" type="HBoxContainer" parent="TopBar"]
@@ -113,47 +111,12 @@ expand_mode = 2
 [node name="GoldLabel" type="Label" parent="TopBar/Money"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "12"
+text = "0"
 
 [node name="Spacer" type="Control" parent="TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.18
-
-[node name="TurnOrder" type="HBoxContainer" parent="TopBar"]
-custom_minimum_size = Vector2(7, 7)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PotraitButton" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
-custom_minimum_size = Vector2(100, 64)
-layout_mode = 2
-portrait = ExtResource("3_rca61")
-
-[node name="PotraitButton2" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
-custom_minimum_size = Vector2(100, 64)
-layout_mode = 2
-portrait = ExtResource("3_rca61")
-
-[node name="PotraitButton3" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
-custom_minimum_size = Vector2(100, 64)
-layout_mode = 2
-portrait = ExtResource("3_rca61")
-
-[node name="PotraitButton4" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
-custom_minimum_size = Vector2(100, 64)
-layout_mode = 2
-portrait = ExtResource("3_rca61")
-
-[node name="PotraitButton5" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
-custom_minimum_size = Vector2(100, 64)
-layout_mode = 2
-portrait = ExtResource("3_rca61")
-
-[node name="PotraitButton6" parent="TopBar/TurnOrder" instance=ExtResource("2_rca61")]
-custom_minimum_size = Vector2(100, 64)
-layout_mode = 2
-portrait = ExtResource("3_rca61")
 
 [node name="Spacer2" type="Control" parent="TopBar"]
 layout_mode = 2

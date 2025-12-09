@@ -12,6 +12,14 @@ class_name PortraitButton
 		unit_name = value
 		if is_inside_tree() and has_node("NameLabel"):
 			$NameLabel.text = unit_name
+			
+@export var star_rank: int = 1:
+	set(value):
+		star_rank = max(1, value)
+		if is_inside_tree() and has_node("StarLabel"):
+			# Either "★", "★★", "★★★" or "★2" style — pick one
+			$StarLabel.text = "★" + str(star_rank)
+			# or: $StarLabel.text = "★".repeat(star_rank)
 
 @export var border_active_color: Color = Color(1.0, 0.85, 0.2, 1.0)
 @export var border_inactive_color: Color = Color(1, 1, 1, 0.0)
@@ -26,6 +34,8 @@ func _ready() -> void:
 	focus_mode = FOCUS_ALL
 	if has_node("NameLabel"):
 		$NameLabel.text = unit_name
+	if has_node("StarLabel"):
+		$StarLabel.text = "★" + str(star_rank)
 	_apply_visuals()
 
 func _on_pressed() -> void:

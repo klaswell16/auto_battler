@@ -97,6 +97,15 @@ func _refresh_owned_units_ui() -> void:
 		# var pb: PortraitButton = owned_portrait_scene.instantiate()
 
 		owned_container.add_child(pb)
+		
+		pb.unit_name = data.display_name
+		pb.portrait = data.portrait_texture
+		pb.disabled = true   # bench is informational
+
+		# ⭐ Read star rank from BattleContext.star_levels
+		var key := data.resource_path
+		var star: int = int(BattleContext.star_levels.get(key, 1))
+		pb.star_rank = star
 
 		
 		pb.unit_name = data.display_name
@@ -104,15 +113,6 @@ func _refresh_owned_units_ui() -> void:
 
 		# Bench portraits are informational
 		pb.disabled = true
-
-
-		# Optional: show star level if you're using star_levels
-		var key := data.resource_path
-		var star: int = int(BattleContext.star_levels.get(key, 1))
-		if star > 1 and pb.has_node("StarLabel"):
-			pb.get_node("StarLabel").text = "★%d" % star
-
-
 
 func _on_start_battle_button_pressed() -> void:
 	# Only start if the player actually has units

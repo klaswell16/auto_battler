@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3htebj1x8k38"]
+[gd_scene load_steps=11 format=3 uid="uid://csgwjjqrwqoy0"]
 
 [ext_resource type="Script" uid="uid://bemitvvcd87oa" path="res://scripts/shop.gd" id="1_rgcs7"]
 [ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="3_eo1la"]
@@ -28,17 +28,19 @@ texture = ExtResource("10_toxd1")
 
 [node name="GoldLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1163.0
-offset_top = 173.0
-offset_right = 1396.0
-offset_bottom = 280.0
+offset_left = 929.0
+offset_top = 72.0
+offset_right = 1162.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 50
 
 [node name="RoundLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1616.0
-offset_top = 222.0
-offset_right = 1859.0
-offset_bottom = 320.0
+offset_left = 1569.0
+offset_top = 65.0
+offset_right = 1812.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 50
 
 [node name="SlotsContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -69,5 +71,15 @@ offset_left = 91.0
 offset_top = 590.0
 offset_right = 878.0
 offset_bottom = 950.0
+theme_override_constants/separation = 30
+
+[node name="BarracksLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 83.0
+offset_right = 909.0
+offset_bottom = 351.0
+theme_override_font_sizes/font_size = 130
+text = "Barracks"
 
 [connection signal="pressed" from="StartBattleButton" to="." method="_on_start_battle_button_pressed"]
