@@ -9,3 +9,6 @@ class_name ChampionData
 
 @export var body_texture: Texture2D        # main in-battle sprite
 @export var portrait_texture: Texture2D    # for your PortraitButton
+
+@export var cost: int = 3    
+@export var tier: int = 1 

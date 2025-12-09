@@ -5,13 +5,14 @@ extends Control
 
 var champion_scene: PackedScene = preload("res://scenes/Champion.tscn")
 
-@export var player_team: Array[ChampionData]
+var player_team: Array[ChampionData] = []
 @export var enemy_team: Array[ChampionData]
 
 var player_slots: Array = []
 var enemy_slots: Array = []
 
 func _ready() -> void:
+	player_team = BattleContext.owned_units.duplicate()
 	_spawn_row(player_row, player_team)
 	_spawn_row(enemy_row, enemy_team)
 	_cache_slots()
@@ -140,3 +141,7 @@ func _get_first_living_champion(slots: Array) -> Champion:
 
 func _on_battle_end(winner: String) -> void:
 	print("Battle over! Winner: ", winner)
+
+	# Simple version: go back to the shop after each battle
+	await get_tree().create_timer(1.0).timeout  # small pause so you see the result
+	get_tree().change_scene_to_file("res://scenes/shop.tscn")

@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AbilityDb="*res://scripts/ability_db.gd"
+BattleContext="*res://scripts/battle_context.gd"
 
 [display]
 

@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://csgwjjqrwqoy0"]
+
+[ext_resource type="Script" uid="uid://bemitvvcd87oa" path="res://scripts/shop.gd" id="1_rgcs7"]
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="2_skkvx"]
+[ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="3_eo1la"]
+[ext_resource type="Resource" uid="uid://dw3pusjlrs7dh" path="res://data/wizard.tres" id="4_toxd1"]
+[ext_resource type="Resource" uid="uid://cxek03a6nagnq" path="res://data/bandit.tres" id="5_47hci"]
+[ext_resource type="Resource" uid="uid://d0em6jn425c6h" path="res://data/shieldbearer.tres" id="6_hd80v"]
+[ext_resource type="Resource" uid="uid://cxwf21vdhp7ov" path="res://data/priest.tres" id="7_abjrc"]
+[ext_resource type="Resource" uid="uid://c1lx0ys505qs4" path="res://data/archer.tres" id="8_jccym"]
+[ext_resource type="PackedScene" uid="uid://crrcw65irwauy" path="res://scenes/ShopSlot.tscn" id="9_plhqw"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rgcs7")
+available_units = Array[ExtResource("2_skkvx")]([ExtResource("3_eo1la"), ExtResource("4_toxd1"), ExtResource("5_47hci"), ExtResource("6_hd80v"), ExtResource("7_abjrc"), ExtResource("8_jccym")])
+shop_slot_scene = ExtResource("9_plhqw")
+slots_per_roll = 3
+
+[node name="GoldLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 124.0
+offset_right = 545.0
+offset_bottom = 147.0
+
+[node name="SlotsContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 7.0
+offset_right = 1532.0
+offset_bottom = 508.0
+
+[node name="RerollButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 311.0
+offset_right = 1053.0
+offset_bottom = 378.0
+text = "Reroll"
+
+[node name="StartBattleButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 327.0
+offset_right = 842.0
+offset_bottom = 363.0
+text = "Start Battle"
+
+[connection signal="pressed" from="StartBattleButton" to="." method="_on_start_battle_button_pressed"]
