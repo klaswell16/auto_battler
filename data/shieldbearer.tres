@@ -7,7 +7,8 @@
 [resource]
 script = ExtResource("2_8cdh5")
 display_name = "Shieldbearer"
-armor = 4
-speed = 2
+power = 2
+armor = 5
+speed = 1
 body_texture = ExtResource("1_8cdh5")
 portrait_texture = ExtResource("2_m5vdx")

@@ -7,5 +7,7 @@
 [resource]
 script = ExtResource("1_5n6jb")
 display_name = "Bandit"
+power = 10
+armor = 1
 body_texture = ExtResource("1_8c7ub")
 portrait_texture = ExtResource("2_3xonf")

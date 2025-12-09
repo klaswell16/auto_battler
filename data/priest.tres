@@ -7,5 +7,8 @@
 [resource]
 script = ExtResource("1_ft3ja")
 display_name = "Priest"
+max_hp = 20
+armor = 1
+speed = 7
 body_texture = ExtResource("1_6h7fi")
 portrait_texture = ExtResource("2_7si84")
