@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnqy0qs8ausia"]
+
+[ext_resource type="Script" uid="uid://jveh2g6n81q" path="res://scripts/victory_screen.gd" id="1_ujlt3"]
+
+[node name="VictoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ujlt3")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 275.0
+offset_right = 1916.0
+offset_bottom = 767.0
+theme_override_font_sizes/font_size = 116
+text = "You are the last one standing!
+You Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1228.0
+offset_top = 805.0
+offset_right = 1663.0
+offset_bottom = 957.0
+text = "Play Again"
+
+[node name="TitleButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 821.0
+offset_right = 611.0
+offset_bottom = 978.0
+text = "Back to Title Screen"
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="TitleButton" to="." method="_on_title_button_pressed"]

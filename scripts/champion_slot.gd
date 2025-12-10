@@ -10,7 +10,7 @@ func _ready():
 	custom_minimum_size = Vector2(128, 128)
 	$Highlight.visible = false
 
-func place_champion(champ_scene: PackedScene, data) -> void:
+func place_champion(champ_scene: PackedScene, data, stat_mult: float = 1.0) -> void:
 	if champion:
 		champion.queue_free()
 
@@ -18,7 +18,7 @@ func place_champion(champ_scene: PackedScene, data) -> void:
 	$Anchor.add_child(c)
 
 	if c.has_method("apply_data"):
-		c.apply_data(data)  
+		c.apply_data(data, stat_mult)  
 		
 	if is_in_enemy_row():
 		c.flip_sprite(true)

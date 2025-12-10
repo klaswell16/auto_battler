@@ -1,13 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsj8dewr7suvq"]
+[gd_scene load_steps=20 format=3 uid="uid://dsj8dewr7suvq"]
 
 [ext_resource type="Texture2D" uid="uid://ky1unmpkiepu" path="res://sprites/ChatGPT Image Nov 5, 2025, 06_23_36 PM.png" id="1_kinr6"]
 [ext_resource type="Script" uid="uid://blr44w1gqrvvu" path="res://scripts/battle_scene.gd" id="1_pxwbd"]
 [ext_resource type="Texture2D" uid="uid://b8060iiultitp" path="res://sprites/P.png" id="2_1i8jf"]
+[ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="2_sjku2"]
 [ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="2_ti0og"]
 [ext_resource type="PackedScene" uid="uid://bk86l6g366q3v" path="res://scenes/champion_slot.tscn" id="3_1i8jf"]
+[ext_resource type="Resource" uid="uid://duakavkpter5f" path="res://levels/level_1.tres" id="3_7mjbx"]
+[ext_resource type="Resource" uid="uid://bdt1n2d6qij5i" path="res://levels/level_2.tres" id="4_jrwob"]
+[ext_resource type="Resource" uid="uid://bif11hsb24t8h" path="res://levels/level_3.tres" id="5_porms"]
+[ext_resource type="Resource" uid="uid://cbw5kteccrpir" path="res://levels/level_4.tres" id="6_0hs4o"]
 [ext_resource type="Resource" uid="uid://cxek03a6nagnq" path="res://data/bandit.tres" id="6_05s0e"]
+[ext_resource type="Resource" uid="uid://sgoc217nt7x4" path="res://levels/level_5.tres" id="7_g6hvt"]
 [ext_resource type="Resource" uid="uid://dw3pusjlrs7dh" path="res://data/wizard.tres" id="7_j0cvo"]
 [ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="8_sjku2"]
+[ext_resource type="Resource" uid="uid://b4dj1y35t60wm" path="res://levels/level_6.tres" id="8_y8gcu"]
+[ext_resource type="Resource" uid="uid://dpfo7xaeey6s1" path="res://levels/level_7.tres" id="9_31luo"]
+[ext_resource type="Resource" uid="uid://dcwchg4a5je12" path="res://levels/level_8.tres" id="10_dm2tv"]
+[ext_resource type="Resource" uid="uid://dcxbgy55837qy" path="res://levels/level_9.tres" id="11_16mmc"]
+[ext_resource type="Resource" uid="uid://b3bm0idytypdi" path="res://levels/level_10.tres" id="12_fg2lh"]
 
 [node name="BattleScene" type="Control"]
 layout_mode = 3
@@ -17,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pxwbd")
+enemy_levels = Array[ExtResource("2_sjku2")]([ExtResource("3_7mjbx"), ExtResource("4_jrwob"), ExtResource("5_porms"), ExtResource("6_0hs4o"), ExtResource("7_g6hvt"), ExtResource("8_y8gcu"), ExtResource("9_31luo"), ExtResource("10_dm2tv"), ExtResource("11_16mmc"), ExtResource("12_fg2lh")])
 enemy_team = Array[ExtResource("2_ti0og")]([ExtResource("6_05s0e"), ExtResource("7_j0cvo"), ExtResource("8_sjku2")])
 
 [node name="Board" type="Control" parent="."]

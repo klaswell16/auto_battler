@@ -5,7 +5,7 @@
 
 [node name="PotraitButton" type="Button"]
 custom_minimum_size = Vector2(160, 64)
-offset_right = 585.0
+offset_right = 473.0
 offset_bottom = 189.0
 icon_alignment = 1
 script = ExtResource("1_ywikn")

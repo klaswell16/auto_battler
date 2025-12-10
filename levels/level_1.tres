@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyLevel" load_steps=5 format=3 uid="uid://duakavkpter5f"]
+
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_vex4u"]
+[ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="2_ykpsn"]
+[ext_resource type="Resource" uid="uid://cxek03a6nagnq" path="res://data/bandit.tres" id="3_uh1wk"]
+[ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="4_8bmbr"]
+
+[resource]
+script = ExtResource("4_8bmbr")
+enemies = Array[ExtResource("1_vex4u")]([ExtResource("2_ykpsn"), ExtResource("3_uh1wk")])
+metadata/_custom_type_script = "uid://c2coi81oxnr2k"

@@ -44,25 +44,25 @@ theme_override_font_sizes/font_size = 50
 
 [node name="SlotsContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 883.0
-offset_top = 279.0
-offset_right = 1918.0
-offset_bottom = 780.0
+offset_left = 849.0
+offset_top = 204.0
+offset_right = 1884.0
+offset_bottom = 464.0
 
 [node name="RerollButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 960.0
-offset_top = 885.0
-offset_right = 1171.0
-offset_bottom = 974.0
+offset_left = 896.0
+offset_top = 898.0
+offset_right = 1107.0
+offset_bottom = 987.0
 text = "Reroll"
 
 [node name="StartBattleButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1470.0
-offset_top = 894.0
-offset_right = 1718.0
-offset_bottom = 973.0
+offset_left = 1590.0
+offset_top = 913.0
+offset_right = 1838.0
+offset_bottom = 992.0
 text = "Start Next Battle"
 
 [node name="OwnedContainer" type="HBoxContainer" parent="."]
@@ -81,5 +81,33 @@ offset_right = 909.0
 offset_bottom = 351.0
 theme_override_font_sizes/font_size = 130
 text = "Barracks"
+
+[node name="UnitInfoPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 1193.0
+offset_top = 692.0
+offset_right = 1504.0
+offset_bottom = 941.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UnitInfoPanel"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="UnitInfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="StarLabel" type="Label" parent="UnitInfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HpLabel" type="Label" parent="UnitInfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PowerLabel" type="Label" parent="UnitInfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="UnitInfoPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ArmorLabel" type="Label" parent="UnitInfoPanel/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="StartBattleButton" to="." method="_on_start_battle_button_pressed"]

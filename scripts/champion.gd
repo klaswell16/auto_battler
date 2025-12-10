@@ -36,25 +36,17 @@ func flip_sprite(is_enemy: bool) -> void:
 		body_sprite.flip_h = false
 
 # Called by ChampionSlot.place_champion
-func apply_data(d) -> void:
+func apply_data(d, stat_mult: float = 1.0) -> void:
 	if d is ChampionData:
 		display_name = d.display_name
-		max_hp = d.max_hp
-		power = d.power
+		max_hp = int(d.max_hp * stat_mult)
+		power  = int(d.power * stat_mult)
 		armor = d.armor
 		speed = d.speed
 		hp = max_hp
 
 		if is_instance_valid(body_sprite) and d.body_texture:
 			body_sprite.texture = d.body_texture
-
-	else:
-		# fallback if you still pass dictionaries anywhere
-		display_name = d.get("name", display_name)
-		max_hp = d.get("hp", max_hp)
-		power = d.get("pwr", power)
-		armor = d.get("armor", armor)
-		hp = max_hp
 
 	_refresh_ui()
 

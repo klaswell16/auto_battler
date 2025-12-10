@@ -2,12 +2,15 @@ extends Control
 
 @onready var player_row: HBoxContainer = $Board/PlayerRow
 @onready var enemy_row: HBoxContainer = $Board/EnemyRow
+
 @onready var gold_label: Label = $TopBar/Money/GoldLabel      
 @onready var round_label: Label = $TopBar/RoundLabel 
 
 var champion_scene: PackedScene = preload("res://scenes/Champion.tscn")
 
 var player_team: Array[ChampionData] = []
+
+@export var enemy_levels: Array[EnemyLevel] = []  
 @export var enemy_team: Array[ChampionData]
 
 var player_slots: Array = []
@@ -15,11 +18,17 @@ var enemy_slots: Array = []
 
 func _ready() -> void:
 	player_team = BattleContext.owned_units.duplicate()
-	_spawn_row(player_row, player_team)
-	_spawn_row(enemy_row, enemy_team)
+
+	enemy_team = _get_current_enemy_team()
+	var enemy_mult: float = _get_current_enemy_stat_multiplier()
+
+	_spawn_row(player_row, player_team, 1.0)
+	_spawn_row(enemy_row, enemy_team, enemy_mult)
+
 	_cache_slots()
 	_update_meta_ui()
 	_start_battle()
+
 
 func _start_battle() -> void:
 	call_deferred("_run_battle")
@@ -28,12 +37,12 @@ func _run_battle() -> void:
 	await get_tree().create_timer(0.4).timeout
 	await _battle_loop_speed_based()
 
-func _spawn_row(row: HBoxContainer, team: Array) -> void:
+func _spawn_row(row: HBoxContainer, team: Array, stat_mult) -> void:
 	var count : int = min(team.size(), row.get_child_count())
 	for i in count:
 		var slot = row.get_child(i)
 		if slot.has_method("place_champion"):
-			slot.place_champion(champion_scene, team[i])
+			slot.place_champion(champion_scene, team[i], stat_mult)
 
 func _cache_slots() -> void:
 	player_slots.clear()
@@ -159,6 +168,22 @@ func _update_meta_ui() -> void:
 	if round_label:
 		round_label.text = "Round: %d" % BattleContext.round
 
+func _get_current_enemy_team() -> Array[ChampionData]:
+	if enemy_levels.is_empty():
+		return []
+
+	var idx :int = clamp(BattleContext.round, 1, enemy_levels.size()) - 1
+	var level: EnemyLevel = enemy_levels[idx]
+
+	return level.enemies
+
+func _get_current_enemy_stat_multiplier() -> float:
+	if enemy_levels.is_empty():
+		return 1.0
+	var idx :int = clamp(BattleContext.round, 1, enemy_levels.size()) - 1
+	return enemy_levels[idx].stat_multiplier
+
+
 
 
 func _on_battle_end(winner: String) -> void:
@@ -166,8 +191,14 @@ func _on_battle_end(winner: String) -> void:
 
 	var player_won: bool = (winner == "player")
 	BattleContext.apply_battle_result(player_won)
-	
+
 	_update_meta_ui()
 
 	await get_tree().create_timer(1.0).timeout
-	get_tree().change_scene_to_file("res://scenes/shop.tscn")
+
+	if BattleContext.game_won:
+		get_tree().change_scene_to_file("res://scenes/victory_screen.tscn")
+	elif BattleContext.game_lost:
+		get_tree().change_scene_to_file("res://scenes/defeat_screen.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/shop.tscn")

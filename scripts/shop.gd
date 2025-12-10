@@ -13,6 +13,13 @@ class_name Shop
 @export var owned_portrait_scene: PackedScene
 @onready var owned_container: HBoxContainer = $OwnedContainer
 
+@onready var unit_info_panel: PanelContainer = $UnitInfoPanel
+@onready var info_name_label: Label = $UnitInfoPanel/VBoxContainer/NameLabel
+@onready var info_star_label: Label = $UnitInfoPanel/VBoxContainer/StarLabel
+@onready var info_hp_label: Label = $UnitInfoPanel/VBoxContainer/HpLabel
+@onready var info_power_label: Label = $UnitInfoPanel/VBoxContainer/PowerLabel
+@onready var info_armor_label: Label = $UnitInfoPanel/VBoxContainer/ArmorLabel
+@onready var info_speed_label: Label = $UnitInfoPanel/VBoxContainer/SpeedLabel
 
 var current_slots: Array = []
 
@@ -43,13 +50,24 @@ func roll_shop() -> void:
 	var count: int = min(slots_per_roll, available_units.size())
 	for i in count:
 		var data_index: int = randi() % available_units.size()
-		var data = available_units[data_index]
+		var data: ChampionData = available_units[data_index]
 
 		var slot: ShopSlot = shop_slot_scene.instantiate()
 		slots_container.add_child(slot)
 		slot.set_offer(data)
 		slot.buy_pressed.connect(_on_slot_buy_pressed)
+
+		# hover to show stats 
+		slot.mouse_entered.connect(_on_shop_slot_mouse_entered.bind(data))
+		slot.mouse_exited.connect(_on_shop_slot_mouse_exited)
+
 		current_slots.append(slot)
+
+func _on_shop_slot_mouse_entered(data: ChampionData) -> void:
+	_show_unit_info(data, 1)
+
+func _on_shop_slot_mouse_exited() -> void:
+	_clear_unit_info()
 
 func _on_slot_buy_pressed(data, cost: int) -> void:
 	if BattleContext.gold < cost:
@@ -102,17 +120,42 @@ func _refresh_owned_units_ui() -> void:
 		pb.portrait = data.portrait_texture
 		pb.disabled = true   # bench is informational
 
-		# ⭐ Read star rank from BattleContext.star_levels
+		# star rank from BattleContext.star_levels
 		var key := data.resource_path
 		var star: int = int(BattleContext.star_levels.get(key, 1))
 		pb.star_rank = star
-
+		
+		pb.mouse_entered.connect(_on_owned_portrait_mouse_entered.bind(data, star))
+		pb.mouse_exited.connect(_on_owned_portrait_mouse_exited)
 		
 		pb.unit_name = data.display_name
 		pb.portrait = data.portrait_texture
 
 		# Bench portraits are informational
 		pb.disabled = true
+func _on_owned_portrait_mouse_entered(data: ChampionData, star: int) -> void:
+	_show_unit_info(data, star)
+
+func _on_owned_portrait_mouse_exited() -> void:
+	_clear_unit_info()
+
+		
+func _show_unit_info(data: ChampionData, star: int = 1) -> void:
+	if data == null:
+		return
+
+	unit_info_panel.visible = true
+
+	info_name_label.text = data.display_name
+	info_star_label.text = "Stars: %d" % star
+	info_hp_label.text = "HP: %d" % data.max_hp
+	info_power_label.text = "Power: %d" % data.power
+	info_armor_label.text = "Armor: %d" % data.armor
+	info_speed_label.text = "Speed: %d" % data.speed
+
+func _clear_unit_info() -> void:
+	unit_info_panel.visible = false
+
 
 func _on_start_battle_button_pressed() -> void:
 	# Only start if the player actually has units

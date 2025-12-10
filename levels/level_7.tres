@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyLevel" load_steps=3 format=3 uid="uid://dpfo7xaeey6s1"]
+
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_dknnk"]
+[ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="2_ntcjd"]
+
+[resource]
+script = ExtResource("2_ntcjd")
+display_name = "Round 7"
+metadata/_custom_type_script = "uid://c2coi81oxnr2k"

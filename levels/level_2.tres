@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyLevel" load_steps=5 format=3 uid="uid://bdt1n2d6qij5i"]
+
+[ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_uno3a"]
+[ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="2_amtoq"]
+[ext_resource type="Resource" uid="uid://d0em6jn425c6h" path="res://data/shieldbearer.tres" id="2_wraee"]
+[ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="3_26ukm"]
+
+[resource]
+script = ExtResource("2_amtoq")
+display_name = "Round 2"
+enemies = Array[ExtResource("1_uno3a")]([ExtResource("2_wraee"), ExtResource("3_26ukm")])
+metadata/_custom_type_script = "uid://c2coi81oxnr2k"
