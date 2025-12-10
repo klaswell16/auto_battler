@@ -2,6 +2,7 @@ extends Node
 
 const MAX_ROUNDS := 10
 const MAX_STAR := 3    
+const BENCH_MAX := 8 
 
 class UnitInstance:
 	var data: ChampionData
@@ -62,6 +63,10 @@ func _try_merge(data: ChampionData, start_star: int) -> void:
 
 		# Now see if we can merge at the next star level (e.g. 2★ → 3★)
 		star += 1
+		
+func is_bench_full() -> bool:
+	return owned_units.size() >= BENCH_MAX
+
 
 func add_unit(data: ChampionData) -> void:
 	if data == null:

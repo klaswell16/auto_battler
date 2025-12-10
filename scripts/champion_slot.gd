@@ -2,7 +2,7 @@ extends Container
 class_name ChampionSlot
 
 @export var slot_index: int = 0
-@export var side: String = "player" # would put enemy here as well
+@export var side: String = "player" 
 
 var champion: Node = null
 

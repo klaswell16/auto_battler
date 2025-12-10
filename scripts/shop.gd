@@ -75,23 +75,27 @@ func _on_shop_slot_mouse_exited() -> void:
 	_clear_unit_info()
 
 func _on_slot_buy_pressed(slot: ShopSlot, data: ChampionData, cost: int) -> void:
+	# Bench full check
+	if BattleContext.owned_units.size() >= BattleContext.BENCH_MAX:
+		print("Bench is full (max %d units)!" % BattleContext.BENCH_MAX)
+		return
+
 	if BattleContext.gold < cost:
 		print("Not enough gold!")
 		return
 
-	# Take payment + add unit
 	BattleContext.gold -= cost
 	BattleContext.add_unit(data)
 	_update_ui()
 	_refresh_owned_units_ui()
 
-	# Consume this shop slot: gray it out + disable
 	if is_instance_valid(slot):
 		slot.modulate = Color(0.5, 0.5, 0.5, 1.0)
 		if slot.buy_button:
 			slot.buy_button.disabled = true
 
 	print("Bought ", data.display_name)
+
 
 
 func _on_reroll_pressed() -> void:
@@ -175,7 +179,7 @@ func _highlight_bench_index(index: int, active: bool) -> void:
 
 	var child = owned_container.get_child(index)
 	if child is PortraitButton:
-		child.set_active(active)  # uses your existing border highlight logic
+		child.set_active(active)  
 
 func _clear_all_bench_highlights() -> void:
 	if owned_container == null:
