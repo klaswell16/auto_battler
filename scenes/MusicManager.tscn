@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ak8l4bgifis"]
+
+[ext_resource type="Script" uid="uid://vlfq2enl5tl8" path="res://scripts/MusicManager.gd" id="1_mvbrv"]
+[ext_resource type="AudioStream" uid="uid://breb0a364tjxe" path="res://sounds/fantasy-medieval-ambient-237371.mp3" id="2_ppk7c"]
+
+[node name="MusicManager" type="Node2D"]
+script = ExtResource("1_mvbrv")
+main_theme = ExtResource("2_ppk7c")

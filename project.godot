@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 BattleContext="*res://scripts/battle_context.gd"
+MusicManager="*res://scenes/MusicManager.tscn"
 
 [display]
 

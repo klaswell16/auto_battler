@@ -56,10 +56,14 @@ func roll_shop() -> void:
 		slots_container.add_child(slot)
 		slot.set_offer(data)
 
-		# signal now passes the slot too
+		
 		slot.buy_pressed.connect(_on_slot_buy_pressed)
 
+		slot.mouse_entered.connect(_on_shop_slot_mouse_entered.bind(data))
+		slot.mouse_exited.connect(_on_shop_slot_mouse_exited)
+
 		current_slots.append(slot)
+
 
 
 func _on_shop_slot_mouse_entered(data: ChampionData) -> void:
