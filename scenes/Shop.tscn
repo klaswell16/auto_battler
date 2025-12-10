@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csgwjjqrwqoy0"]
+[gd_scene load_steps=12 format=3 uid="uid://csgwjjqrwqoy0"]
 
 [ext_resource type="Script" uid="uid://bemitvvcd87oa" path="res://scripts/shop.gd" id="1_rgcs7"]
 [ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="3_eo1la"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cxwf21vdhp7ov" path="res://data/priest.tres" id="7_abjrc"]
 [ext_resource type="Resource" uid="uid://c1lx0ys505qs4" path="res://data/archer.tres" id="8_jccym"]
 [ext_resource type="PackedScene" uid="uid://crrcw65irwauy" path="res://scenes/ShopSlot.tscn" id="9_plhqw"]
+[ext_resource type="AudioStream" uid="uid://bnnvrndm02t2y" path="res://sounds/pickupCoin(1).wav" id="10_47hci"]
 [ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="10_eo1la"]
 [ext_resource type="Texture2D" uid="uid://de8xg2hxx5nia" path="res://sprites/barracksbg.png" id="10_toxd1"]
 
@@ -19,6 +20,10 @@ available_units = [ExtResource("3_eo1la"), ExtResource("4_toxd1"), ExtResource("
 shop_slot_scene = ExtResource("9_plhqw")
 slots_per_roll = 3
 owned_portrait_scene = ExtResource("10_eo1la")
+
+[node name="BuySFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_47hci")
+volume_db = -18.158
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 0

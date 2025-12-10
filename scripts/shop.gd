@@ -12,6 +12,7 @@ class_name Shop
 @onready var reroll_button: Button = $RerollButton
 @export var owned_portrait_scene: PackedScene
 @onready var owned_container: HBoxContainer = $OwnedContainer
+@onready var buy_sfx: AudioStreamPlayer = $BuySFX
 
 @onready var unit_info_panel: PanelContainer = $UnitInfoPanel
 @onready var info_name_label: Label = $UnitInfoPanel/VBoxContainer/NameLabel
@@ -86,6 +87,10 @@ func _on_slot_buy_pressed(slot: ShopSlot, data: ChampionData, cost: int) -> void
 
 	BattleContext.gold -= cost
 	BattleContext.add_unit(data)
+	# buy sound
+	if buy_sfx:
+		buy_sfx.play()
+		
 	_update_ui()
 	_refresh_owned_units_ui()
 
