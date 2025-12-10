@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bk8dirvi5vqxs"]
 
-[ext_resource type="Script" uid="uid://drv3doqk8roe1" path="res://scenes/defeat_screen.gd" id="1_up55u"]
+[ext_resource type="Script" uid="uid://drv3doqk8roe1" path="res://scripts/defeat_screen.gd" id="1_up55u"]
 
 [node name="DefeatScreen" type="Control"]
 layout_mode = 3

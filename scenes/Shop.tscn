@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://c1lx0ys505qs4" path="res://data/archer.tres" id="8_jccym"]
 [ext_resource type="PackedScene" uid="uid://crrcw65irwauy" path="res://scenes/ShopSlot.tscn" id="9_plhqw"]
 [ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="10_eo1la"]
-[ext_resource type="Texture2D" uid="uid://b8060iiultitp" path="res://sprites/P.png" id="10_toxd1"]
+[ext_resource type="Texture2D" uid="uid://de8xg2hxx5nia" path="res://sprites/barracksbg.png" id="10_toxd1"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -73,14 +73,15 @@ offset_right = 878.0
 offset_bottom = 950.0
 theme_override_constants/separation = 30
 
-[node name="BarracksLabel" type="Label" parent="."]
+[node name="BarracksLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 191.0
-offset_top = 83.0
-offset_right = 909.0
-offset_bottom = 351.0
-theme_override_font_sizes/font_size = 130
-text = "Barracks"
+offset_left = 137.0
+offset_top = 80.0
+offset_right = 997.0
+offset_bottom = 285.0
+theme_override_colors/default_color = Color(0.41981313, 0.41981313, 0.4198131, 1)
+theme_override_font_sizes/normal_font_size = 133
+text = "The Barracks"
 
 [node name="UnitInfoPanel" type="PanelContainer" parent="."]
 layout_mode = 0

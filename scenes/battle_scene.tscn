@@ -139,38 +139,3 @@ size_flags_stretch_ratio = 1.21
 custom_minimum_size = Vector2(120, 64)
 layout_mode = 2
 text = "Options"
-
-[node name="BottomBar" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 828.0
-offset_right = 1918.0
-offset_bottom = 1076.0
-
-[node name="BattleLog" type="RichTextLabel" parent="BottomBar"]
-custom_minimum_size = Vector2(1300, 0)
-layout_mode = 2
-
-[node name="AbilityPanel" type="VBoxContainer" parent="BottomBar"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-
-[node name="PortraitDisplay" type="TextureRect" parent="BottomBar/AbilityPanel"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="BottomBar/AbilityPanel"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "John Snow"
-
-[node name="ActiveDesc" type="RichTextLabel" parent="BottomBar/AbilityPanel"]
-layout_mode = 2
-text = "Active:
-"
-fit_content = true
-
-[node name="PassiveDesc" type="RichTextLabel" parent="BottomBar/AbilityPanel"]
-layout_mode = 2
-text = "Passive Ability:"
-fit_content = true
