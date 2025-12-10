@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://d0em6jn425c6h" path="res://data/shieldbearer.tres" id="6_hd80v"]
 [ext_resource type="Resource" uid="uid://cxwf21vdhp7ov" path="res://data/priest.tres" id="7_abjrc"]
 [ext_resource type="Resource" uid="uid://c1lx0ys505qs4" path="res://data/archer.tres" id="8_jccym"]
-[ext_resource type="PackedScene" uid="uid://crrcw65irwauy" path="res://scenes/ShopSlot.tscn" id="9_plhqw"]
+[ext_resource type="PackedScene" uid="uid://crrcw65irwauy" path="res://scenes/ShopSlot.tscn" id="8_toxd1"]
 [ext_resource type="AudioStream" uid="uid://bnnvrndm02t2y" path="res://sounds/pickupCoin(1).wav" id="10_47hci"]
 [ext_resource type="PackedScene" uid="uid://dhtudq5lcjm0n" path="res://ui/potrait_button.tscn" id="10_eo1la"]
 [ext_resource type="Texture2D" uid="uid://de8xg2hxx5nia" path="res://sprites/barracksbg.png" id="10_toxd1"]
@@ -17,7 +17,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rgcs7")
 available_units = [ExtResource("3_eo1la"), ExtResource("4_toxd1"), ExtResource("5_47hci"), ExtResource("6_hd80v"), ExtResource("7_abjrc"), ExtResource("8_jccym")]
-shop_slot_scene = ExtResource("9_plhqw")
+shop_slot_scene = ExtResource("8_toxd1")
 slots_per_roll = 3
 owned_portrait_scene = ExtResource("10_eo1la")
 

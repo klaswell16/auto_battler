@@ -6,7 +6,7 @@ extends Control
 @onready var gold_label: Label = $TopBar/Money/GoldLabel      
 @onready var round_label: Label = $TopBar/RoundLabel 
 
-var champion_scene: PackedScene = preload("res://scenes/Champion.tscn")
+var champion_scene: PackedScene = preload("res://scenes/champion.tscn")
 
 var player_team: Array = []
 
@@ -212,4 +212,4 @@ func _on_battle_end(winner: String) -> void:
 	elif BattleContext.game_lost:
 		get_tree().change_scene_to_file("res://scenes/defeat_screen.tscn")
 	else:
-		get_tree().change_scene_to_file("res://scenes/shop.tscn")
+		get_tree().change_scene_to_file("res://scenes/Shop.tscn")

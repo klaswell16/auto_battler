@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="auto_battler"
-run/main_scene="uid://dsj8dewr7suvq"
+run/main_scene="uid://bxa62cmjd54sk"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
