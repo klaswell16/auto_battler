@@ -6,6 +6,8 @@ class_name Champion
 @export var power := 8
 @export var armor := 2
 @export var speed :=1
+@export var star_level: int = 1
+
 @export var attack_sounds: Array[AudioStream] = []
 
 var hp: int
@@ -36,17 +38,27 @@ func flip_sprite(is_enemy: bool) -> void:
 		body_sprite.flip_h = false
 
 # Called by ChampionSlot.place_champion
-func apply_data(d, stat_mult: float = 1.0) -> void:
+func apply_data(d: ChampionData, stat_mult: float = 1.0, star_level_in: int = 1) -> void:
 	if d is ChampionData:
 		display_name = d.display_name
-		max_hp = int(d.max_hp * stat_mult)
-		power  = int(d.power * stat_mult)
-		armor = d.armor
-		speed = d.speed
-		hp = max_hp
+		star_level = max(1, star_level_in)
+
+		# Star multiplier: 1★ = 1.0, 2★ = 1.5, 3★ = 2.0
+		var star_mult: float = 1.0 + 0.5 * float(star_level - 1)
+
+		max_hp = int(d.max_hp * stat_mult * star_mult)
+		power  = int(d.power  * stat_mult * star_mult)
+		armor  = d.armor      
+		speed  = d.speed      
 
 		if is_instance_valid(body_sprite) and d.body_texture:
 			body_sprite.texture = d.body_texture
+
+		hp = max_hp
+		_refresh_ui()
+	else:
+		
+		pass
 
 	_refresh_ui()
 

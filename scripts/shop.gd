@@ -107,13 +107,14 @@ func _refresh_owned_units_ui() -> void:
 	if owned_container == null:
 		return
 
-	# Clear old portraits
 	for child in owned_container.get_children():
 		child.queue_free()
 
-	# Rebuild bench UI based on BattleContext.owned_units
 	for i in BattleContext.owned_units.size():
-		var data: ChampionData = BattleContext.owned_units[i]
+		var inst = BattleContext.owned_units[i]
+		var data: ChampionData = inst.data
+		var star: int = inst.star
+
 		if data == null:
 			continue
 
@@ -122,21 +123,16 @@ func _refresh_owned_units_ui() -> void:
 
 		pb.unit_name = data.display_name
 		pb.portrait = data.portrait_texture
-
-		# Get star rank from BattleContext
-		var key := data.resource_path
-		var star: int = int(BattleContext.star_levels.get(key, 1))
 		pb.star_rank = star
-
-		# Allow clicking so we can swap
 		pb.disabled = false
 
-		# Hover: show stats
+		# Hover → show effective stats for THIS star level
 		pb.mouse_entered.connect(_on_owned_portrait_mouse_entered.bind(data, star))
 		pb.mouse_exited.connect(_on_owned_portrait_mouse_exited)
 
-		# Click: select / swap positions
+		# Click → select / swap
 		pb.pressed.connect(_on_owned_portrait_pressed.bind(i))
+
 		
 func _on_owned_portrait_pressed(index: int) -> void:
 	# First click: select a slot
@@ -202,12 +198,24 @@ func _show_unit_info(data: ChampionData, star: int = 1) -> void:
 
 	unit_info_panel.visible = true
 
+	var star_level :int = max(1, star)
+	var star_mult: float = 1.0 + 0.5 * float(star_level - 1)
+
+	var effective_hp: int = int(data.max_hp * star_mult)
+	var effective_power: int = int(data.power * star_mult)
+	# Armor / speed don’t scale with stars
+	var effective_armor: int = data.armor
+	var effective_speed: int = data.speed
+
 	info_name_label.text = data.display_name
-	info_star_label.text = "Stars: %d" % star
-	info_hp_label.text = "HP: %d" % data.max_hp
-	info_power_label.text = "Power: %d" % data.power
-	info_armor_label.text = "Armor: %d" % data.armor
-	info_speed_label.text = "Speed: %d" % data.speed
+	info_star_label.text = "Stars: %d" % star_level
+
+	# Show effective stats 
+	info_hp_label.text = "HP: %d" % effective_hp
+	info_power_label.text = "Power: %d" % effective_power
+	info_armor_label.text = "Armor: %d" % effective_armor
+	info_speed_label.text = "Speed: %d" % effective_speed
+
 
 func _clear_unit_info() -> void:
 	unit_info_panel.visible = false

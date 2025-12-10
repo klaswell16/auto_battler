@@ -1,6 +1,11 @@
 extends Node
 
 const MAX_ROUNDS := 10
+const MAX_STAR := 3    
+
+class UnitInstance:
+	var data: ChampionData
+	var star: int = 1
 
 var gold: int = 10
 var round: int = 1
@@ -9,13 +14,12 @@ var win_gold: int = 5
 var loss_gold: int = 2
 var round_bonus: int = 1
 
-var owned_units: Array[ChampionData] = []
-var copy_counts: Dictionary = {}
-var star_levels: Dictionary = {}
+var owned_units: Array[UnitInstance] = []  
 
 var game_won: bool = false
 var game_lost: bool = false
 var game_over: bool = false
+
 
 func reset_run() -> void:
 	gold = 10
@@ -24,27 +28,73 @@ func reset_run() -> void:
 	game_lost = false
 	game_over = false
 	owned_units.clear()
-	copy_counts.clear()
-	star_levels.clear()
+	
+
+func _try_merge(data: ChampionData, start_star: int) -> void:
+	var star := start_star
+
+	while star < MAX_STAR:
+		var indices: Array[int] = []
+
+		# Find all instances of this unit at this star level
+		for i in owned_units.size():
+			var u: UnitInstance = owned_units[i]
+			if u.data == data and u.star == star:
+				indices.append(i)
+
+		if indices.size() < 3:
+			return  # not enough to merge at this star level
+
+		# We have at least 3 → consume exactly 3 to make 1 upgraded
+		indices.sort()
+
+		# Remove 3 from highest index down so indices don't shift
+		for j in range(2, -1, -1):
+			owned_units.remove_at(indices[j])
+
+		# Create upgraded instance
+		var upgraded := UnitInstance.new()
+		upgraded.data = data
+		upgraded.star = star + 1
+		owned_units.append(upgraded)
+
+		print("Upgraded ", data.display_name, " to ", upgraded.star, "-star!")
+
+		# Now see if we can merge at the next star level (e.g. 2★ → 3★)
+		star += 1
 
 func add_unit(data: ChampionData) -> void:
 	if data == null:
 		return
 
-	owned_units.append(data)
+	# Start with a new 1★ instance
+	var inst := UnitInstance.new()
+	inst.data = data
+	inst.star = 1
+	owned_units.append(inst)
 
-	var key := data.resource_path
-	if key == "":
-		key = str(data)
+	# Try to merge 1★ → 2★, 2★ → 3★, etc.
+	_try_merge(data, 1)
 
-	var count: int = int(copy_counts.get(key, 0)) + 1
-	copy_counts[key] = count
+		
+func _squash_unit_instances(data: ChampionData) -> void:
+	# Keep exactly ONE instance of this unit 
+	var indices: Array[int] = []
 
-	var star: int = int(star_levels.get(key, 1))
-	if count >= 3:
-		copy_counts[key] = 0
-		star_levels[key] = star + 1
-		print("Upgraded ", data.display_name, " to ", star + 1, "-star!")
+	for i in owned_units.size():
+		if owned_units[i] == data:
+			indices.append(i)
+
+	if indices.size() <= 1:
+		return  
+
+	indices.sort()  # ascending
+
+	# Keep the first; remove all others (from end so indices don't shift)
+	for j in range(indices.size() - 1, 0, -1):
+		owned_units.remove_at(indices[j])
+
+
 
 func apply_battle_result(player_won: bool) -> void:
 	if game_over:

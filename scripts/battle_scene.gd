@@ -8,7 +8,7 @@ extends Control
 
 var champion_scene: PackedScene = preload("res://scenes/Champion.tscn")
 
-var player_team: Array[ChampionData] = []
+var player_team: Array = []
 
 @export var enemy_levels: Array[EnemyLevel] = []  
 @export var enemy_team: Array[ChampionData]
@@ -22,8 +22,8 @@ func _ready() -> void:
 	enemy_team = _get_current_enemy_team()
 	var enemy_mult: float = _get_current_enemy_stat_multiplier()
 
-	_spawn_row(player_row, player_team, 1.0)
-	_spawn_row(enemy_row, enemy_team, enemy_mult)
+	_spawn_row(player_row, player_team, 1.0, true)
+	_spawn_row(enemy_row, enemy_team, enemy_mult, false)
 
 	_cache_slots()
 	_update_meta_ui()
@@ -37,12 +37,23 @@ func _run_battle() -> void:
 	await get_tree().create_timer(0.4).timeout
 	await _battle_loop_speed_based()
 
-func _spawn_row(row: HBoxContainer, team: Array, stat_mult) -> void:
-	var count : int = min(team.size(), row.get_child_count())
+func _spawn_row(row: HBoxContainer, team: Array, stat_mult: float, is_player: bool) -> void:
+	var count: int = min(team.size(), row.get_child_count())
 	for i in count:
 		var slot = row.get_child(i)
-		if slot.has_method("place_champion"):
-			slot.place_champion(champion_scene, team[i], stat_mult)
+		if not slot.has_method("place_champion"):
+			continue
+
+		if is_player:
+			var inst = team[i]              # UnitInstance
+			var data: ChampionData = inst.data
+			var star_level: int = inst.star
+			slot.place_champion(champion_scene, data, stat_mult, star_level)
+		else:
+			var data_enemy: ChampionData = team[i]
+			slot.place_champion(champion_scene, data_enemy, stat_mult, 1)
+
+
 
 func _cache_slots() -> void:
 	player_slots.clear()
