@@ -17,6 +17,7 @@ offset_top = 2.0
 offset_right = 179.66666
 offset_bottom = 152.0
 scale = Vector2(0.6, 0.6)
+color = Color(1, 1, 1, 0.13725491)
 
 [node name="Portrait" type="TextureRect" parent="."]
 visibility_layer = 2
@@ -32,11 +33,12 @@ expand_mode = 1
 [node name="Border" type="ColorRect" parent="."]
 visibility_layer = 4
 layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 178.33333
-offset_bottom = 153.33333
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 180.33331
+offset_bottom = 155.33333
 scale = Vector2(0.6, 0.6)
+color = Color(1, 1, 0.3137255, 0.27450982)
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0

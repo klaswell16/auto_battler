@@ -21,6 +21,8 @@ class_name Shop
 @onready var info_armor_label: Label = $UnitInfoPanel/VBoxContainer/ArmorLabel
 @onready var info_speed_label: Label = $UnitInfoPanel/VBoxContainer/SpeedLabel
 
+var _selected_bench_index: int = -1
+
 var current_slots: Array = []
 
 func _ready() -> void:
@@ -109,34 +111,84 @@ func _refresh_owned_units_ui() -> void:
 	for child in owned_container.get_children():
 		child.queue_free()
 
-	# Add one portrait per owned unit
-	for data in BattleContext.owned_units:
+	# Rebuild bench UI based on BattleContext.owned_units
+	for i in BattleContext.owned_units.size():
+		var data: ChampionData = BattleContext.owned_units[i]
 		if data == null:
 			continue
 
-		var pb := owned_portrait_scene.instantiate()
-		# Optional: cast for editor hints, but not required for runtime
-		# var pb: PortraitButton = owned_portrait_scene.instantiate()
-
+		var pb: PortraitButton = owned_portrait_scene.instantiate()
 		owned_container.add_child(pb)
-		
+
 		pb.unit_name = data.display_name
 		pb.portrait = data.portrait_texture
-		pb.disabled = true   # bench is informational
 
-		# star rank from BattleContext.star_levels
+		# Get star rank from BattleContext
 		var key := data.resource_path
 		var star: int = int(BattleContext.star_levels.get(key, 1))
 		pb.star_rank = star
-		
+
+		# Allow clicking so we can swap
+		pb.disabled = false
+
+		# Hover: show stats
 		pb.mouse_entered.connect(_on_owned_portrait_mouse_entered.bind(data, star))
 		pb.mouse_exited.connect(_on_owned_portrait_mouse_exited)
-		
-		pb.unit_name = data.display_name
-		pb.portrait = data.portrait_texture
 
-		# Bench portraits are informational
-		pb.disabled = true
+		# Click: select / swap positions
+		pb.pressed.connect(_on_owned_portrait_pressed.bind(i))
+		
+func _on_owned_portrait_pressed(index: int) -> void:
+	# First click: select a slot
+	if _selected_bench_index == -1:
+		_selected_bench_index = index
+		_highlight_bench_index(index, true)
+		return
+
+	# Clicking the same slot again: cancel selection
+	if _selected_bench_index == index:
+		_highlight_bench_index(index, false)
+		_selected_bench_index = -1
+		return
+
+	# Second different slot: swap the two units in BattleContext
+	_swap_owned_units(_selected_bench_index, index)
+
+	# Clear visual selection
+	_clear_all_bench_highlights()
+	_selected_bench_index = -1
+
+	# Rebuild UI to reflect new order
+	_refresh_owned_units_ui()
+
+func _swap_owned_units(a: int, b: int) -> void:
+	if a < 0 or b < 0:
+		return
+	if a >= BattleContext.owned_units.size() or b >= BattleContext.owned_units.size():
+		return
+
+	var tmp := BattleContext.owned_units[a]
+	BattleContext.owned_units[a] = BattleContext.owned_units[b]
+	BattleContext.owned_units[b] = tmp
+
+func _highlight_bench_index(index: int, active: bool) -> void:
+	if owned_container == null:
+		return
+	if index < 0 or index >= owned_container.get_child_count():
+		return
+
+	var child = owned_container.get_child(index)
+	if child is PortraitButton:
+		child.set_active(active)  # uses your existing border highlight logic
+
+func _clear_all_bench_highlights() -> void:
+	if owned_container == null:
+		return
+	for child in owned_container.get_children():
+		if child is PortraitButton:
+			child.set_active(false)
+
+
 func _on_owned_portrait_mouse_entered(data: ChampionData, star: int) -> void:
 	_show_unit_info(data, star)
 

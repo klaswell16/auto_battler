@@ -17,11 +17,11 @@ class_name PortraitButton
 	set(value):
 		star_rank = max(1, value)
 		if is_inside_tree() and has_node("StarLabel"):
-			# Either "★", "★★", "★★★" or "★2" style — pick one
+			
 			$StarLabel.text = "★" + str(star_rank)
-			# or: $StarLabel.text = "★".repeat(star_rank)
+			
 
-@export var border_active_color: Color = Color(1.0, 0.85, 0.2, 1.0)
+@export var border_active_color: Color = Color(1.0, 0.85, 0.2, 0.25)
 @export var border_inactive_color: Color = Color(1, 1, 1, 0.0)
 @export var dead_dim_color: Color = Color(0, 0, 0, 0.45)
 @export var acted_dim_color: Color = Color(0, 0, 0, 0.22)
