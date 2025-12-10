@@ -55,13 +55,12 @@ func roll_shop() -> void:
 		var slot: ShopSlot = shop_slot_scene.instantiate()
 		slots_container.add_child(slot)
 		slot.set_offer(data)
+
+		# signal now passes the slot too
 		slot.buy_pressed.connect(_on_slot_buy_pressed)
 
-		# hover to show stats 
-		slot.mouse_entered.connect(_on_shop_slot_mouse_entered.bind(data))
-		slot.mouse_exited.connect(_on_shop_slot_mouse_exited)
-
 		current_slots.append(slot)
+
 
 func _on_shop_slot_mouse_entered(data: ChampionData) -> void:
 	_show_unit_info(data, 1)
@@ -69,24 +68,25 @@ func _on_shop_slot_mouse_entered(data: ChampionData) -> void:
 func _on_shop_slot_mouse_exited() -> void:
 	_clear_unit_info()
 
-func _on_slot_buy_pressed(data, cost: int) -> void:
+func _on_slot_buy_pressed(slot: ShopSlot, data: ChampionData, cost: int) -> void:
 	if BattleContext.gold < cost:
 		print("Not enough gold!")
 		return
 
+	# Take payment + add unit
 	BattleContext.gold -= cost
 	BattleContext.add_unit(data)
 	_update_ui()
 	_refresh_owned_units_ui()
 
-	for slot in current_slots:
-		if slot.data == data:
-			slot.modulate = Color(0.5, 0.5, 0.5, 1.0)
-			if slot.buy_button:
-				slot.buy_button.disabled = true
-			break
+	# Consume this shop slot: gray it out + disable
+	if is_instance_valid(slot):
+		slot.modulate = Color(0.5, 0.5, 0.5, 1.0)
+		if slot.buy_button:
+			slot.buy_button.disabled = true
 
 	print("Bought ", data.display_name)
+
 
 func _on_reroll_pressed() -> void:
 	if BattleContext.gold < reroll_cost:

@@ -28,9 +28,9 @@ texture = ExtResource("10_toxd1")
 
 [node name="GoldLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 929.0
+offset_left = 1115.0
 offset_top = 72.0
-offset_right = 1162.0
+offset_right = 1348.0
 offset_bottom = 179.0
 theme_override_font_sizes/font_size = 50
 
@@ -44,10 +44,10 @@ theme_override_font_sizes/font_size = 50
 
 [node name="SlotsContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 849.0
+offset_left = 978.0
 offset_top = 204.0
 offset_right = 1884.0
-offset_bottom = 464.0
+offset_bottom = 496.0
 
 [node name="RerollButton" type="Button" parent="."]
 layout_mode = 0
@@ -67,10 +67,10 @@ text = "Start Next Battle"
 
 [node name="OwnedContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 91.0
-offset_top = 590.0
-offset_right = 878.0
-offset_bottom = 950.0
+offset_left = 109.0
+offset_top = 357.0
+offset_right = 896.0
+offset_bottom = 717.0
 theme_override_constants/separation = 30
 
 [node name="BarracksLabel" type="RichTextLabel" parent="."]
