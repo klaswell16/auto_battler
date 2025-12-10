@@ -43,7 +43,7 @@ func clear_slots() -> void:
 		if is_instance_valid(slot):
 			slot.queue_free()
 	current_slots.clear()
-
+# rerolls shop
 func roll_shop() -> void:
 	clear_slots()
 	if available_units.is_empty():
@@ -67,7 +67,7 @@ func roll_shop() -> void:
 		current_slots.append(slot)
 
 
-
+# shows unit stats
 func _on_shop_slot_mouse_entered(data: ChampionData) -> void:
 	_show_unit_info(data, 1)
 
@@ -130,11 +130,11 @@ func _refresh_owned_units_ui() -> void:
 		pb.star_rank = star
 		pb.disabled = false
 
-		# Hover → show effective stats for THIS star level
+		# show effective stats for this star level
 		pb.mouse_entered.connect(_on_owned_portrait_mouse_entered.bind(data, star))
 		pb.mouse_exited.connect(_on_owned_portrait_mouse_exited)
 
-		# Click → select / swap
+		# swapping units
 		pb.pressed.connect(_on_owned_portrait_pressed.bind(i))
 
 		

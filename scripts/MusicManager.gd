@@ -1,16 +1,15 @@
 extends Node
 
 
-@export var main_theme: AudioStream  # set this in the Inspector
+@export var main_theme: AudioStream 
 
 var _player: AudioStreamPlayer
 
 func _ready() -> void:
-	# Create the audio player once
+	# Create the audio player  
 	_player = AudioStreamPlayer.new()
 	add_child(_player)
 
-	# Optional: route through "Music" bus if you have one
 	_player.bus = "Music"
 
 	# Loop the track

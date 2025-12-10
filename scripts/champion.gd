@@ -43,7 +43,7 @@ func apply_data(d: ChampionData, stat_mult: float = 1.0, star_level_in: int = 1)
 		display_name = d.display_name
 		star_level = max(1, star_level_in)
 
-		# Star multiplier: 1★ = 1.0, 2★ = 1.5, 3★ = 2.0
+		# Star multiplier: 1 = 1.0, 2 = 1.5, 3 = 2.0
 		var star_mult: float = 1.0 + 0.5 * float(star_level - 1)
 
 		max_hp = int(d.max_hp * stat_mult * star_mult)
@@ -66,7 +66,7 @@ func set_hp(value: int) -> void:
 	hp = clamp(value, 0, max_hp)
 	if is_instance_valid(hp_bar):
 		hp_bar.value = hp
-	# Visual feedback on death (but don't free yet)
+	# Visual feedback on death 
 	if hp <= 0:
 		modulate = Color(0.4, 0.4, 0.4) # grey them out
 
@@ -111,7 +111,7 @@ func attack(target: Champion) -> void:
 		
 	_play_random_attack_sound()
 	
-	# --- Lunge towards the target ---
+	# lunges
 	var start_pos: Vector2 = global_position
 	var dir: Vector2 = (target.global_position - start_pos).normalized()
 	var lunge_pos: Vector2 = start_pos + dir * 20.0  # how far to jump
@@ -120,15 +120,15 @@ func attack(target: Champion) -> void:
 	tween.tween_property(self, "global_position", lunge_pos, 0.08)
 	tween.tween_property(self, "global_position", start_pos, 0.12)
 
-	# Wait until the lunge forward + back is done
+	# Wait until the lunge forward is done
 	await tween.finished
 
-	# --- Hit flash on the target ---
+	# hit flash on target
 	var original_modulate := target.modulate
 	target.modulate = Color(1, 0.5, 0.5)  # light red
 	await get_tree().create_timer(0.1).timeout
 	target.modulate = original_modulate
 	
-	# --- Apply damage AFTER the animation ---
+	# apply damage after animation
 	target.take_damage(power)
 	

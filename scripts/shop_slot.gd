@@ -10,7 +10,7 @@ var data: ChampionData
 var cost: int = 0
 
 signal buy_pressed(slot: ShopSlot, data: ChampionData, cost: int)
-#                    ^^^^^ send self too
+
 
 func _ready() -> void:
 	if buy_button:
@@ -34,5 +34,5 @@ func set_offer(d: ChampionData) -> void:
 func _on_buy_button_pressed() -> void:
 	if data == null:
 		return
-	# emit *this* slot along with the data
+	# emit this slot along with the data
 	emit_signal("buy_pressed", self, data, cost)

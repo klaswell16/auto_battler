@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnqy0qs8ausia"]
+[gd_scene load_steps=3 format=3 uid="uid://dnqy0qs8ausia"]
 
 [ext_resource type="Script" uid="uid://jveh2g6n81q" path="res://scripts/victory_screen.gd" id="1_ujlt3"]
+[ext_resource type="Texture2D" uid="uid://d22uy5hm4n6qu" path="res://sprites/9.webp" id="2_wdgif"]
 
 [node name="VictoryScreen" type="Control"]
 layout_mode = 3
@@ -11,13 +12,14 @@ script = ExtResource("1_ujlt3")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+texture = ExtResource("2_wdgif")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 275.0
-offset_right = 1916.0
-offset_bottom = 767.0
+offset_left = 5.0
+offset_top = 11.0
+offset_right = 1922.0
+offset_bottom = 503.0
 theme_override_font_sizes/font_size = 116
 text = "You are the last one standing!
 You Win!"

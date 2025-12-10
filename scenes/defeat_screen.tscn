@@ -1,23 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk8dirvi5vqxs"]
+[gd_scene load_steps=3 format=3 uid="uid://bk8dirvi5vqxs"]
 
 [ext_resource type="Script" uid="uid://drv3doqk8roe1" path="res://scripts/defeat_screen.gd" id="1_up55u"]
+[ext_resource type="Texture2D" uid="uid://c5fjui4e6mn6f" path="res://sprites/af0d0541f5830f0.png" id="2_ws5tn"]
 
 [node name="DefeatScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_up55u")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+texture = ExtResource("2_ws5tn")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 685.0
-offset_top = 409.0
-offset_right = 1243.0
-offset_bottom = 530.0
+offset_left = 379.0
+offset_top = 481.0
+offset_right = 1568.0
+offset_bottom = 602.0
+theme_override_font_sizes/font_size = 50
 text = "The enemy was too strong and you got clobbered"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -32,10 +35,10 @@ text = "Back to Title Screen"
 
 [node name="PlayAgainButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1218.0
-offset_top = 792.0
-offset_right = 1509.0
-offset_bottom = 911.0
+offset_left = 1274.0
+offset_top = 796.0
+offset_right = 1714.0
+offset_bottom = 937.0
 text = "Play Again"
 
 [connection signal="pressed" from="TitleButton" to="." method="_on_title_button_pressed"]

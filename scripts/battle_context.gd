@@ -46,7 +46,7 @@ func _try_merge(data: ChampionData, start_star: int) -> void:
 		if indices.size() < 3:
 			return  # not enough to merge at this star level
 
-		# We have at least 3 → consume exactly 3 to make 1 upgraded
+		# We have at least 3 
 		indices.sort()
 
 		# Remove 3 from highest index down so indices don't shift
@@ -61,7 +61,7 @@ func _try_merge(data: ChampionData, start_star: int) -> void:
 
 		print("Upgraded ", data.display_name, " to ", upgraded.star, "-star!")
 
-		# Now see if we can merge at the next star level (e.g. 2★ → 3★)
+		
 		star += 1
 		
 func is_bench_full() -> bool:
@@ -72,18 +72,18 @@ func add_unit(data: ChampionData) -> void:
 	if data == null:
 		return
 
-	# Start with a new 1★ instance
+	# Start with a new 1 star instance
 	var inst := UnitInstance.new()
 	inst.data = data
 	inst.star = 1
 	owned_units.append(inst)
 
-	# Try to merge 1★ → 2★, 2★ → 3★, etc.
+	# Try to merge 
 	_try_merge(data, 1)
 
 		
 func _squash_unit_instances(data: ChampionData) -> void:
-	# Keep exactly ONE instance of this unit 
+	# Keep exactly 1 instance of this unit 
 	var indices: Array[int] = []
 
 	for i in owned_units.size():
@@ -95,7 +95,7 @@ func _squash_unit_instances(data: ChampionData) -> void:
 
 	indices.sort()  # ascending
 
-	# Keep the first; remove all others (from end so indices don't shift)
+	# Keep the first; remove all others
 	for j in range(indices.size() - 1, 0, -1):
 		owned_units.remove_at(indices[j])
 
