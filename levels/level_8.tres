@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyLevel" load_steps=3 format=3 uid="uid://dcwchg4a5je12"]
+[gd_resource type="Resource" script_class="EnemyLevel" load_steps=6 format=3 uid="uid://dcwchg4a5je12"]
 
 [ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_41kdy"]
 [ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="2_lec2a"]
+[ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="2_mscb5"]
+[ext_resource type="Resource" uid="uid://cxwf21vdhp7ov" path="res://data/priest.tres" id="3_aypid"]
+[ext_resource type="Resource" uid="uid://dw3pusjlrs7dh" path="res://data/wizard.tres" id="4_hbvhw"]
 
 [resource]
 script = ExtResource("2_lec2a")
 display_name = "Round 8"
+enemies = Array[ExtResource("1_41kdy")]([ExtResource("2_mscb5"), ExtResource("3_aypid"), ExtResource("4_hbvhw")])
+stat_multiplier = 2.2
 metadata/_custom_type_script = "uid://c2coi81oxnr2k"

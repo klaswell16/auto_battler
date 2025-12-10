@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyLevel" load_steps=3 format=3 uid="uid://cbw5kteccrpir"]
+[gd_resource type="Resource" script_class="EnemyLevel" load_steps=6 format=3 uid="uid://cbw5kteccrpir"]
 
 [ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_bpgma"]
+[ext_resource type="Resource" uid="uid://d0em6jn425c6h" path="res://data/shieldbearer.tres" id="2_t3ewd"]
 [ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="2_ywm6e"]
+[ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="3_ontb4"]
+[ext_resource type="Resource" uid="uid://c1lx0ys505qs4" path="res://data/archer.tres" id="4_r441p"]
 
 [resource]
 script = ExtResource("2_ywm6e")
 display_name = "Round 4"
+enemies = Array[ExtResource("1_bpgma")]([ExtResource("2_t3ewd"), ExtResource("3_ontb4"), ExtResource("4_r441p")])
+stat_multiplier = 1.5
 metadata/_custom_type_script = "uid://c2coi81oxnr2k"

@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyLevel" load_steps=3 format=3 uid="uid://sgoc217nt7x4"]
+[gd_resource type="Resource" script_class="EnemyLevel" load_steps=5 format=3 uid="uid://sgoc217nt7x4"]
 
 [ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_ph3nq"]
+[ext_resource type="Resource" uid="uid://d0em6jn425c6h" path="res://data/shieldbearer.tres" id="2_b2xv8"]
 [ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="2_wqbat"]
+[ext_resource type="Resource" uid="uid://cxek03a6nagnq" path="res://data/bandit.tres" id="3_lmvv4"]
 
 [resource]
 script = ExtResource("2_wqbat")
 display_name = "Round 5"
+enemies = Array[ExtResource("1_ph3nq")]([ExtResource("2_b2xv8"), ExtResource("3_lmvv4")])
+stat_multiplier = 1.8
 metadata/_custom_type_script = "uid://c2coi81oxnr2k"

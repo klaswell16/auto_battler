@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyLevel" load_steps=3 format=3 uid="uid://bif11hsb24t8h"]
+[gd_resource type="Resource" script_class="EnemyLevel" load_steps=6 format=3 uid="uid://bif11hsb24t8h"]
 
 [ext_resource type="Script" uid="uid://b5ufi8mmpoals" path="res://scripts/champion_data.gd" id="1_bhil5"]
 [ext_resource type="Script" uid="uid://c2coi81oxnr2k" path="res://scripts/enemy_level.gd" id="2_hsws6"]
+[ext_resource type="Resource" uid="uid://digdr3ve32udb" path="res://data/fighter.tres" id="2_xbwtf"]
+[ext_resource type="Resource" uid="uid://dw3pusjlrs7dh" path="res://data/wizard.tres" id="3_vg66b"]
+[ext_resource type="Resource" uid="uid://cxwf21vdhp7ov" path="res://data/priest.tres" id="4_4s1ec"]
 
 [resource]
 script = ExtResource("2_hsws6")
 display_name = "Round 3"
+enemies = Array[ExtResource("1_bhil5")]([ExtResource("2_xbwtf"), ExtResource("3_vg66b"), ExtResource("4_4s1ec")])
+stat_multiplier = 1.3
 metadata/_custom_type_script = "uid://c2coi81oxnr2k"
