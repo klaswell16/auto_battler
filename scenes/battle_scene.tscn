@@ -134,8 +134,3 @@ size_flags_stretch_ratio = 0.18
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.21
-
-[node name="OptionsButton" type="Button" parent="TopBar"]
-custom_minimum_size = Vector2(120, 64)
-layout_mode = 2
-text = "Options"
